@@ -10,16 +10,43 @@ class AdsHelper {
     contentUrl: 'http://foo.com/bar.html',
     nonPersonalizedAds: true,
   );
-  //  String testDevice = 'YOUR_DEVICE_ID';
+  final adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/6300978111'
+      : 'ca-app-pub-3940256099942544/2934735716';
+
+  BannerAd? _bannerAd;
+
   int maxFailedLoadAttempts = 3;
   InterstitialAd? _interstitialAd;
   int _numInterstitialLoadAttempts = 0;
 
- static RewardedAd? _rewardedAd;
+  static RewardedAd? _rewardedAd;
   int _numRewardedLoadAttempts = 0;
 
   RewardedInterstitialAd? _rewardedInterstitialAd;
   int _numRewardedInterstitialLoadAttempts = 0;
+
+  void loadAd() {
+    _bannerAd = BannerAd(
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-3940256099942544/6300978111'
+          : 'ca-app-pub-3940256099942544/2934735716',
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          print('$ad loaded.');
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          print('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
 
   void _createInterstitialAd() {
     InterstitialAd.load(
