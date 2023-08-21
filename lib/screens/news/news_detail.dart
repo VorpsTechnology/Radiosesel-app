@@ -34,39 +34,36 @@ class NewsDetail extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 onTap: () => Navigator.of(context).pop(),
-              ).vP8,
+              ),
               Expanded(
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       color: Colors.white.withAlpha(180),
                       borderRadius: BorderRadius.circular(15)),
-                  child: Column(
-                    children: [
-                      Image(image: NetworkImage(cover)).p8,
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            Text(date).p8,
-                            Text(
-                              title,
-                              style: const TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            ).p8,
-                            Html(
-                              data: description,
-                              style: {
-                                "p": Style(
-                                    fontSize: FontSize.medium,
-                                    textAlign: TextAlign.justify),
-                              },
-                            )
-                            // Text(NewsManager().parseHtmlString(description) ??
-                            // "Loading...")
-                          ],
-                        ).p16,
-                      ),
-                    ],
+                  child: Expanded(
+                    child: ListView(
+                      children: [
+                        Image(image: NetworkImage(cover)).p8,
+                        Text(date).p8,
+                        Text(
+                          title,
+                          style: const TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ).p8,
+                        Html(
+                          data: description,
+                          style: {
+                            "p": Style(
+                                fontSize: FontSize.medium,
+                                textAlign: TextAlign.justify),
+                          },
+                        )
+                        // Text(NewsManager().parseHtmlString(description) ??
+                        // "Loading...")
+                      ],
+                    ).p16,
                   ),
                 ),
               ),

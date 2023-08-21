@@ -16,7 +16,7 @@ class DonationScreen extends StatelessWidget {
           const RandomCover(),
           Column(
             children: [
-              const CustomNavigationBar().vP8,
+              const CustomNavigationBar(),
               const Spacer(),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8),

@@ -26,9 +26,7 @@ class _NewsListingState extends State<NewsListing> {
           const RandomCover(),
           Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+             
               CustomNavigationBar(
                 child: Text(
                   'News',

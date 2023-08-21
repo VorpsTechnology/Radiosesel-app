@@ -143,7 +143,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                   ).round(5),
                                 );
                               },
-                            ).vP4,
+                            ).hp(16),
 
                             ValueListenableBuilder<RadioModel?>(
                               valueListenable:
@@ -176,6 +176,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                               decoration: BoxDecoration(
                                 color: CommonColor.primaryColor.withOpacity(.7),
                                 borderRadius: BorderRadius.circular(15),
+                                
                               ),
                               child: ValueListenableBuilder<ButtonState>(
                                   valueListenable:
@@ -205,13 +206,13 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                         ).p8;
                                     }
                                   }),
-                            ),
+                            ).hp(16),
                             const Spacer(),
                             Container(
                               decoration: BoxDecoration(
                                 // border: Border.all(
                                 //     color: Colors.white10.withAlpha(80)),
-                                color: const Color.fromARGB(255, 128, 128, 128)
+                                color: Color.fromARGB(255, 27, 26, 26)
                                     .withOpacity(.5),
                                 borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(15),
@@ -243,7 +244,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                             // fullScreen == true ? const Spacer() : Container(),
                             // const Spacer(),
                           ],
-                        ).hp(16),
+                        ),
                       ),
                     ),
                   ),

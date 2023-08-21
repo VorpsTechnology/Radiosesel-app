@@ -78,43 +78,43 @@ class RadioDetailState extends State<RadioDetail> {
           right: 0,
           child: FooPage(),
         ),
-        Positioned(
-            // top: 0,
-            bottom: 100,
-            left: 0,
-            right: 0,
-            child: Container(
-              // color: Colors.yellow,
-              // height: 40,
-              width: double.infinity,
-              decoration: const BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: Colors.black45,
-                  blurRadius: 5.0,
-                  spreadRadius: 2,
-                  offset: Offset(
-                    1,
-                    2,
-                  ),
-                ),
-              ], borderRadius: BorderRadius.all(Radius.circular(15))),
-              child: BorderButtonType1(
-                text: "LISTEN",
-                onPress: () {
-                  getIt<PlayerManager>().addPlaylist(
-                    radio: widget.radio,
-                  );
-                },
-                backgroundColor: CommonColor.primaryColor.withOpacity(.6),
-                textStyle: const TextStyle(
-                    color: Colors.white, fontSize: 25, letterSpacing: 11),
-                borderColor: CommonColor.primaryColor,
-                cornerRadius: 15,
-              ),
-            ).hP16),
+        // Positioned(
+        //     // top: 0,
+        //     bottom: 100,
+        //     left: 0,
+        //     right: 0,
+        //     child: Container(
+        //       // color: Colors.yellow,
+        //       // height: 40,
+        //       width: double.infinity,
+        //       decoration: const BoxDecoration(boxShadow: [
+        //         BoxShadow(
+        //           color: Colors.black45,
+        //           blurRadius: 5.0,
+        //           spreadRadius: 2,
+        //           offset: Offset(
+        //             1,
+        //             2,
+        //           ),
+        //         ),
+        //       ], borderRadius: BorderRadius.all(Radius.circular(15))),
+        //       child: BorderButtonType1(
+        //         text: "LISTEN",
+        //         onPress: () {
+        //           getIt<PlayerManager>().addPlaylist(
+        //             radio: widget.radio,
+        //           );
+        //         },
+        //         backgroundColor: CommonColor.primaryColor.withOpacity(.6),
+        //         textStyle: const TextStyle(
+        //             color: Colors.white, fontSize: 25, letterSpacing: 11),
+        //         borderColor: CommonColor.primaryColor,
+        //         cornerRadius: 15,
+        //       ),
+        //     ).hP16),
         const Positioned(
           child: CustomNavigationBar(),
-          top: 40,
+          top: 0,
           // bottom: 140,
           left: 0,
           right: 0,

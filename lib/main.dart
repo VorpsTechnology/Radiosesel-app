@@ -8,7 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await EasyLocalization.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   var devices = ["E4823FBAE26FF01B49728AAAD3D6D40A"];
 
   await setupServiceLocator();
