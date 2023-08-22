@@ -37,7 +37,7 @@ class CustomNavigationBar extends StatelessWidget with PreferredSizeWidget {
                       BoxShadow(
                         color: Colors.black45,
                         blurRadius: 5.0,
-                        spreadRadius: 2,
+                        spreadRadius: .2,
                         offset: Offset(
                           1,
                           2,

@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:music_streaming_mobile/screens/donation/donation.dart';
 import 'package:music_streaming_mobile/screens/news/news_listing.dart';
 
+import '../player/mini_player.dart';
+
 //ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
   final RadioModel? radio;

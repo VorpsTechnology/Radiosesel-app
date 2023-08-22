@@ -54,4 +54,10 @@ class _FooPageState extends State<FooPage> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
