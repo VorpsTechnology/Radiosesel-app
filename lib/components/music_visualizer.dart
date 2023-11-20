@@ -87,7 +87,7 @@ class _VisualComponentState extends State<VisualComponent>
       width: 3,
       height: animation!.value,
       decoration: BoxDecoration(
-          color: widget.color, borderRadius: BorderRadius.circular(5)),
+          color: widget.color, borderRadius: BorderRadius.circular(5),boxShadow: [BoxShadow(color: widget.color!,spreadRadius: 1)]),
     );
   }
 }

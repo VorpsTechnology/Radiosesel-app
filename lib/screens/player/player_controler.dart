@@ -36,11 +36,10 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
   double coverImageSize = 40;
   double playerHeight = 80;
   final List<Color> colors = [
-    const Color(0xff000000),
-    Colors.white,
-    const Color(0xff000000),
-    Colors.white,
-    const Color(0xff000000)
+    const Color.fromARGB(255, 255, 0, 0),
+    const Color.fromARGB(255, 255, 0, 0),
+    const Color.fromARGB(255, 250, 147, 3),
+    const Color.fromARGB(255, 250, 147, 3),
   ];
   String currentImage = 'assets/images/cover.jpg';
   final List<int> duration = [
@@ -160,8 +159,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                             .displaySmall!
                                             .copyWith(
                                                 fontWeight: FontWeight.w600,
-                                                color:
-                                                    CommonColor.primaryColor)),
+                                                color: CommonColor.kWhite)),
                                     const SizedBox(
                                       height: 5,
                                     ),
@@ -174,7 +172,8 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                               height: 80,
                               alignment: Alignment.bottomCenter,
                               decoration: BoxDecoration(
-                                color: CommonColor.primaryColor.withOpacity(.7),
+                                color: const Color.fromARGB(255, 60, 60, 60)
+                                    .withOpacity(.25),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               child: ValueListenableBuilder<ButtonState>(
@@ -211,7 +210,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                               decoration: BoxDecoration(
                                 // border: Border.all(
                                 //     color: Colors.white10.withAlpha(80)),
-                                color: Color.fromARGB(255, 27, 26, 26)
+                                color: const Color.fromARGB(255, 27, 26, 26)
                                     .withOpacity(.5),
                                 borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(15),

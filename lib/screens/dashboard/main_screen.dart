@@ -99,6 +99,7 @@ class MainScreenState extends State<MainScreen> {
       case MenuItems.news:
         return const NewsListing();
     }
+    return null;
   }
 
   Widget mainScreen(double panelMinSize, double panelMaxSize) {
@@ -106,7 +107,7 @@ class MainScreenState extends State<MainScreen> {
         valueListenable: pageManager.playStateNotifier,
         builder: (_, value, __) {
           return WeSlide(
-            backgroundColor: Theme.of(context).backgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             panelMinSize: 70,
             panelMaxSize: panelMaxSize,
             body: getScreen()!,
@@ -115,7 +116,9 @@ class MainScreenState extends State<MainScreen> {
             panel:
                 value == true ? const FullSizePlayerController() : Container(),
             panelHeader:
-                value == true ? const SmallSizePlayerController() : Container(),
+                // value == true ? const 
+                const SmallSizePlayerController() 
+                // : Container(),
           );
         });
   }

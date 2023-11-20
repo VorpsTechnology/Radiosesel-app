@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:get/get.dart';
@@ -34,66 +32,23 @@ class DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-        
-          // ClipRect(
-          //   child: BackdropFilter(
-          //     filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-          //     child: Container(
-          //       height: 100,
-          //       decoration: const BoxDecoration(
-          //         color: Color(0xfff4d444),
-          //       ),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Container(
-          //             height: 60,
-          //             width: 300,
-          //             // child: ThemeIconWidget(
-          //             //   ThemeIcon.music,
-          //             //   color: Theme.of(context).iconTheme.color,
-          //             //   size: 25,
-          //             // ),
-          //             decoration: const BoxDecoration(
-          //               image: DecorationImage(
-          //                   image: AssetImage("assets/images/logo.png"),
-          //                   fit: BoxFit.fitWidth),
-          //             ),
-          //           ).circular,
-          //           const SizedBox(
-          //             width: 10,
-          //           ),
-          //           // Text(
-          //           //   AppConfig.projectName,
-          //           //   style: Theme.of(context)
-          //           //       .textTheme
-          //           //       .titleLarge!
-          //           //       .copyWith(fontWeight: FontWeight.w700,color: const Color(0xff232323)),
-          //           // )
-          //         ],
-          //       ).setPadding(left: 16, right: 16, top: 40),
-          //     ),
-          //   ),
-          // ),
-          RadioDetail(
-            radio: RadioModel(
-                id: "",
-                name: "Radiosesel",
-                image: "assets/images/bg1.jpg",
-                about: "about",
-                language: "language",
-                genreName: "genreName",
-                genreId: "genreId",
-                status: 1,
-                streamUrl: "https://stream.radiosesel.com/stream#.mp3",
-                isFeatured: 0,
-                searchCount: 0),
-          )
-        ],
-      ),
+    return ListView(
+      children: [
+        RadioDetail(
+          radio: RadioModel(
+              id: "",
+              name: "Radiosesel",
+              image: "assets/images/bg1.jpg",
+              about: "about",
+              language: "language",
+              genreName: "genreName",
+              genreId: "genreId",
+              status: 1,
+              streamUrl: "https://stream.radiosesel.com/stream#.mp3",
+              isFeatured: 0,
+              searchCount: 0),
+        )
+      ],
     );
   }
 
