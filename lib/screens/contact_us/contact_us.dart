@@ -18,7 +18,7 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      // backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         leading: GestureDetector(
           child: Image.asset(
@@ -65,7 +65,7 @@ class _ContactUsState extends State<ContactUs> {
                 ),
                 Obx(() => InputField(
                       textStyle: Theme.of(context).textTheme.bodyLarge,
-                      controller: contactUsController.phone.value,
+                      controller: contactUsController.subject.value,
                       hintText: LocalizationString.subject,
                       showBorder: true,
                       showDivider: false,
@@ -142,7 +142,7 @@ class _ContactUsState extends State<ContactUs> {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(cover),
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                     CommonColor.primaryColor, BlendMode.srcATop))),
       ),
     );

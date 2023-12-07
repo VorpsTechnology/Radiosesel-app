@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:music_streaming_mobile/helper/common_import.dart';
 // import 'package:get/get.dart';
+const adUnitId = "ca-app-pub-3940256099942544/6300978111";
 
 // class BannerAds extends StatefulWidget {
 //   const BannerAds({Key? key}) : super(key: key);

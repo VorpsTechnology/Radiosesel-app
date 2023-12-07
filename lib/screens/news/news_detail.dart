@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_streaming_mobile/components/random_cover.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
-import 'package:music_streaming_mobile/manager/news_manager.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class NewsDetail extends StatelessWidget {
@@ -52,6 +51,14 @@ class NewsDetail extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         ).p8,
+                        Container(
+                          height: 80,
+                          width: double.infinity,
+                          color: Colors.red,
+                          alignment: Alignment.center,
+                          child: const Text("A D   W I D G E T"),
+                        ),
+
                         Html(
                           data: description,
                           style: {

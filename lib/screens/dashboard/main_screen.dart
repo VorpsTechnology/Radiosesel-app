@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:get/get.dart';
 import 'package:music_streaming_mobile/screens/donation/donation.dart';
@@ -35,19 +36,27 @@ class MainScreenState extends State<MainScreen> {
   bool fullScreenPlayer = false;
   final pageManager = getIt<PlayerManager>();
   // final SettingController settingController = Get.find();
+  late BannerAd bannerAd;
+  initBannerAd() {
+    bannerAd = BannerAd(
+        size: AdSize.fullBanner,
+        adUnitId: adUnitId,
+        listener: const BannerAdListener(),
+        request: const AdRequest());
+    bannerAd.load();
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     // settingController.getSettings();
     menuType = MenuType.home;
     extraData = widget.extraData;
     super.initState();
+    initBannerAd();
   }
 
   @override
   void didUpdateWidget(covariant MainScreen oldWidget) {
-    // TODO: implement didUpdateWidget
     // menuType = widget.menuType;
     setState(() {});
     super.didUpdateWidget(oldWidget);
@@ -60,9 +69,15 @@ class MainScreenState extends State<MainScreen> {
     const double _panelMinSize = 160.0;
     final double _panelMaxSize = MediaQuery.of(context).size.height;
     return Scaffold(
+      bottomNavigationBar: SizedBox(
+        height: bannerAd.size.height.toDouble(),
+        width: bannerAd.size.width.toDouble(),
+        child: AdWidget(ad: bannerAd),
+      ),
       backgroundColor: getBGColor(currentItem),
       // bottomNavigationBar: bottomNavBar(),
       body: ZoomDrawer(
+        // androidCloseOnBackTap: true,
         controller: zoomDrawerController,
         menuScreen: Builder(builder: (context) {
           return MenuScreen(
@@ -107,19 +122,20 @@ class MainScreenState extends State<MainScreen> {
         valueListenable: pageManager.playStateNotifier,
         builder: (_, value, __) {
           return WeSlide(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            panelMinSize: 70,
-            panelMaxSize: panelMaxSize,
-            body: getScreen()!,
-            // footer: bottomNavBar(),
-            footerHeight: 95,
-            panel:
-                value == true ? const FullSizePlayerController() : Container(),
-            panelHeader:
-                // value == true ? const 
-                const SmallSizePlayerController() 
-                // : Container(),
-          );
+              backgroundColor: Theme.of(context).colorScheme.background,
+              panelMinSize: 70,
+              panelMaxSize: panelMaxSize,
+              body: getScreen()!,
+              // footer: bottomNavBar(),
+              footerHeight: 95,
+              panel: value == true
+                  ? const FullSizePlayerController()
+                  : Container(),
+              panelHeader:
+                  // value == true ? const
+                  const SmallSizePlayerController()
+              // : Container(),
+              );
         });
   }
 
@@ -171,8 +187,7 @@ class MainScreenState extends State<MainScreen> {
 
   Widget loadView() {
     // if (menuType == MenuType.home) {
-      return const Dashboard();
-   
+    return const Dashboard();
   }
 
 // getAllSongsFromAlbum(AlbumModel album) {
@@ -205,7 +220,7 @@ class MenuScreen extends GetView<MyDrawerController> {
 
   Widget buildMenuItem(MenuItem item) {
     return ListTile(
-      selectedTileColor: Colors.grey,
+      selectedTileColor: CommonColor.secondaryColor,
       selected: currentItem == item,
       minLeadingWidth: 20,
       leading: Icon(

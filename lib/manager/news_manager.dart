@@ -14,6 +14,7 @@ class NewsManager {
     var url = Uri.tryParse(
       "http://www.seychellesnewsagency.com/rss/$category",
     );
+    print(url);
     Map<String, String> header = {
       'Content-Type': 'application/json;charset=UTF-8',
     };
@@ -40,6 +41,7 @@ class NewsManager {
   }
 
   final newsCategories = [
+    "All",
     "Business",
     "National",
     "Environment",
@@ -47,6 +49,7 @@ class NewsManager {
     "Best in Seychelles"
   ];
   final newsCategoriesApi = [
+    "",
     "/1/Business",
     "/2/National",
     "/4/Environment",

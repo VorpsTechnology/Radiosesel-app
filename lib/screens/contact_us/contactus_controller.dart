@@ -3,21 +3,21 @@ import 'package:get/get.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 
 class ContactUsController extends GetxController {
-  Rx<TextEditingController> name = TextEditingController().obs;
+  // Rx<TextEditingController> name = TextEditingController().obs;
   Rx<TextEditingController> email = TextEditingController().obs;
-  Rx<TextEditingController> phone = TextEditingController().obs;
+  Rx<TextEditingController> subject = TextEditingController().obs;
   Rx<TextEditingController> message = TextEditingController().obs;
 
   sendMessage() {
-    if (name.value.text.isEmpty) {
-      showMessage(LocalizationString.pleaseEnterName, true);
-      return;
-    }
-    if (email.value.text.isEmpty) {
-      showMessage(LocalizationString.pleaseEnterEmail, true);
-      return;
-    }
-    if (phone.value.text.isEmpty) {
+    // if (name.value.text.isEmpty) {
+    //   showMessage(LocalizationString.pleaseEnterName, true);
+    //   return;
+    // }
+    // if (email.value.text.isEmpty) {
+    //   showMessage(LocalizationString.pleaseEnterEmail, true);
+    //   return;
+    // }
+    if (subject.value.text.isEmpty) {
       showMessage(LocalizationString.pleaseEnterPhoneNumber, true);
       return;
     }
@@ -28,8 +28,8 @@ class ContactUsController extends GetxController {
 
     EasyLoading.show(status: LocalizationString.loading);
     getIt<FirebaseManager>()
-        .sendContactusMessage(name.value.text, email.value.text,
-            phone.value.text, message.value.text)
+        .sendContactusMessage( email.value.text,
+            subject.value.text, message.value.text)
         .then((result) {
       EasyLoading.dismiss();
       if (result.status == true) {

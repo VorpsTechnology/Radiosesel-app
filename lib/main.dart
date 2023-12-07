@@ -3,6 +3,7 @@ import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:get/get.dart';
 import 'package:music_streaming_mobile/screens/dashboard/dashboard_controller.dart';
 import 'package:music_streaming_mobile/screens/contact_us/contactus_controller.dart';
+import 'package:music_streaming_mobile/screens/news/news_controller.dart';
 import 'package:music_streaming_mobile/screens/radio/radio_detail_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -39,7 +40,7 @@ void main() async {
   Get.put(LanguageController());
   // Get.put(FavRadiosController());
   Get.put(RadioDetailController());
-  // Get.put(SearchController());
+  Get.put(NewsController());
   // Get.put(SubscriptionPackageController());
 
   runApp(

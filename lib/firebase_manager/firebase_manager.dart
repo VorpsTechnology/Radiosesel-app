@@ -381,14 +381,14 @@ class FirebaseManager {
   }
 
   Future<FirebaseResponse> sendContactusMessage(
-      String name, String email, String phone, String message) async {
+       String email, String subject, String message) async {
     String id = getRandString(15);
     DocumentReference doc = contact.doc(id);
     await doc.set({
       'id': id,
-      'name': name,
+      // 'name': name,
       'email': email,
-      'phone': phone,
+      'subject': subject,
       'message': message,
       'status': 1
     }).then((value) {
