@@ -22,7 +22,6 @@ class DashboardController extends GetxController {
       if (result.isNotEmpty) {
         Get.to(() => RadioDetail(
               radio: result.first,
-              
             ));
       }
     });

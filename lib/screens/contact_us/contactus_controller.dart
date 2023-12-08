@@ -13,10 +13,10 @@ class ContactUsController extends GetxController {
     //   showMessage(LocalizationString.pleaseEnterName, true);
     //   return;
     // }
-    // if (email.value.text.isEmpty) {
-    //   showMessage(LocalizationString.pleaseEnterEmail, true);
-    //   return;
-    // }
+    if (email.value.text.isEmpty) {
+      showMessage(LocalizationString.pleaseEnterEmail, true);
+      return;
+    }
     if (subject.value.text.isEmpty) {
       showMessage(LocalizationString.pleaseEnterPhoneNumber, true);
       return;

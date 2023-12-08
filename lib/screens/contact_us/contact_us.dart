@@ -53,8 +53,23 @@ class _ContactUsState extends State<ContactUs> {
                       child: InputField(
                         isDisabled: true,
                         textStyle: Theme.of(context).textTheme.bodyLarge,
-                        controller: contactUsController.email.value,
+                        controller: contactUsController.subject.value,
                         hintText: "radiosesel.com@hotmail.com",
+                        showDivider: false,
+                        showBorder: true,
+                        cornerRadius: 10,
+                        borderColor: CommonColor.secondaryColor,
+                      ),
+                    )),
+                const SizedBox(
+                  height: 20,
+                ),
+                      Obx(() => AbsorbPointer(
+                      child: InputField(
+                        isDisabled: false,
+                        textStyle: Theme.of(context).textTheme.bodyLarge,
+                        controller: contactUsController.email.value,
+                        hintText: "Enter your email",
                         showDivider: false,
                         showBorder: true,
                         cornerRadius: 10,
@@ -80,7 +95,7 @@ class _ContactUsState extends State<ContactUs> {
                       hintText: LocalizationString.message,
                       showBorder: true,
                       showDivider: false,
-                      maxLines: 7,
+                      maxLines: 6,
                       cornerRadius: 10,
                     )),
                 const SizedBox(

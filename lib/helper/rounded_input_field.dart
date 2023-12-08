@@ -112,20 +112,21 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+      // margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
       decoration: BoxDecoration(
         color: isError == false
             ? backgroundColor
             : (showDivider == false && showBorder == false)
-            ? Theme.of(context).errorColor
-            : backgroundColor,
+                ? Theme.of(context).errorColor
+                : backgroundColor,
         borderRadius: BorderRadius.circular(cornerRadius ?? 0),
         border: showBorder == true
             ? Border.all(
-            width: 0.5,
-            color: isError == true
-                ? Theme.of(context).errorColor
-                : borderColor ?? Colors.black87)
+                width: 1,
+                color: isError == true
+                    ? Theme.of(context).errorColor
+                    : borderColor ?? Colors.black87)
             : null,
       ),
       // margin: EdgeInsets.symmetric(vertical: 5),
@@ -133,8 +134,8 @@ class _InputFieldState extends State<InputField> {
       height: maxLines != null
           ? (min(maxLines!, 10) * 20) + 45
           : label != null
-          ? 70
-          : 60,
+              ? 70
+              : 60,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +147,7 @@ class _InputFieldState extends State<InputField> {
             children: [
               (label != null && showLabelInNewLine == false)
                   ? Text(label!, style: Theme.of(context).textTheme.subtitle1)
-                  .bP4
+                      .bP4
                   : Container(),
               iconOnRightSide == false ? iconView() : Container(),
               Expanded(
@@ -189,20 +190,20 @@ class _InputFieldState extends State<InputField> {
   Widget line() {
     return showDivider == true
         ? Container(
-        height: 0.5,
-        color: startedEditing == true
-            ? Theme.of(context).primaryColor
-            : isError == true
-            ? Theme.of(context).errorColor
-            : Theme.of(context).dividerColor)
+            height: 0.5,
+            color: startedEditing == true
+                ? Theme.of(context).primaryColor
+                : isError == true
+                    ? Theme.of(context).errorColor
+                    : Theme.of(context).dividerColor)
         : Container();
   }
 
   Widget iconView() {
     return icon != null
         ? ThemeIconWidget(icon!,
-        color: iconColor ?? Theme.of(context).primaryColor, size: 20)
-        .hP16
+                color: iconColor ?? Theme.of(context).primaryColor, size: 20)
+            .hP16
         : Container();
   }
 }
@@ -252,24 +253,24 @@ class _DropDownFieldState extends State<DropDownField> {
         children: [
           widget.label != null
               ? Text(widget.label!,
-              style: Theme.of(context).textTheme.subtitle1)
-              .bP8
+                      style: Theme.of(context).textTheme.subtitle1)
+                  .bP8
               : Container(),
           Row(
             children: [
               Expanded(
                   child: TextField(
-                    style: Theme.of(context).textTheme.bodySmall,
-                    controller: widget.controller,
-                    onChanged: widget.onChanged,
-                    keyboardType: TextInputType.number,
-                    cursorColor: Theme.of(context).primaryColorDark,
-                    decoration: InputDecoration(
-                      hintStyle: Theme.of(context).textTheme.bodySmall,
-                      hintText: widget.hintText,
-                      border: InputBorder.none,
-                    ),
-                  )),
+                style: Theme.of(context).textTheme.bodySmall,
+                controller: widget.controller,
+                onChanged: widget.onChanged,
+                keyboardType: TextInputType.number,
+                cursorColor: Theme.of(context).primaryColorDark,
+                decoration: InputDecoration(
+                  hintStyle: Theme.of(context).textTheme.bodySmall,
+                  hintText: widget.hintText,
+                  border: InputBorder.none,
+                ),
+              )),
               ThemeIconWidget(ThemeIcon.downArrow,
                   color: Theme.of(context).errorColor)
             ],
@@ -359,16 +360,16 @@ class _InputMobileNumberFieldState extends State<InputMobileNumberField> {
         color: isError == false
             ? backgroundColor
             : (showDivider == false && showBorder == false)
-            ? Theme.of(context).errorColor
-            : backgroundColor,
-        borderRadius: BorderRadius.circular(
-            cornerRadius != null ? cornerRadius! : 0),
+                ? Theme.of(context).errorColor
+                : backgroundColor,
+        borderRadius:
+            BorderRadius.circular(cornerRadius != null ? cornerRadius! : 0),
         border: showBorder == true
             ? Border.all(
-            width: 0.5,
-            color: isError == true
-                ? Theme.of(context).errorColor
-                : borderColor ?? Theme.of(context).primaryColorLight)
+                width: 0.5,
+                color: isError == true
+                    ? Theme.of(context).errorColor
+                    : borderColor ?? Theme.of(context).primaryColorLight)
             : null,
       ),
       height: widget.label != null ? 72 : 60,
@@ -378,7 +379,7 @@ class _InputMobileNumberFieldState extends State<InputMobileNumberField> {
         children: [
           widget.label != null
               ? Text(widget.label!,
-              style: Theme.of(context).textTheme.subtitle1)
+                  style: Theme.of(context).textTheme.subtitle1)
               : Container(),
           Row(children: [
             Text(
@@ -415,7 +416,7 @@ class _InputMobileNumberFieldState extends State<InputMobileNumberField> {
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           contentPadding:
-                          const EdgeInsets.only(left: 10, right: 10),
+                              const EdgeInsets.only(left: 10, right: 10),
                           counterText: "",
                           // labelText: hintText,
                           labelStyle: Theme.of(context).textTheme.bodyMedium,
@@ -438,12 +439,12 @@ class _InputMobileNumberFieldState extends State<InputMobileNumberField> {
   Widget line() {
     return widget.showDivider == true
         ? Container(
-        height: 0.5,
-        color: startedEditing == true
-            ? Theme.of(context).primaryColor
-            : isError == true
-            ? Theme.of(context).errorColor
-            : Theme.of(context).dividerColor)
+            height: 0.5,
+            color: startedEditing == true
+                ? Theme.of(context).primaryColor
+                : isError == true
+                    ? Theme.of(context).errorColor
+                    : Theme.of(context).dividerColor)
         : Container();
   }
 }
@@ -495,8 +496,8 @@ class _InputDateFieldState extends State<InputDateField> {
         children: [
           widget.label != null
               ? Text(widget.label!,
-              style: Theme.of(context).textTheme.subtitle1)
-              .bP8
+                      style: Theme.of(context).textTheme.subtitle1)
+                  .bP8
               : Container(),
           Container(
             width: 80,
@@ -588,8 +589,8 @@ class _RoundedInputDateTimeFieldState extends State<RoundedInputDateTimeField> {
         children: [
           widget.label != null
               ? Text(widget.label!,
-              style: Theme.of(context).textTheme.subtitle1)
-              .bP8
+                      style: Theme.of(context).textTheme.subtitle1)
+                  .bP8
               : Container(),
           Container(
             color: Theme.of(context).backgroundColor,
@@ -617,7 +618,7 @@ class _RoundedInputDateTimeFieldState extends State<RoundedInputDateTimeField> {
                     onChanged!(pickedDate);
                     setState(() {
                       String formattedDate =
-                      DateFormat('dd-MMM-yyyy').format(pickedDate);
+                          DateFormat('dd-MMM-yyyy').format(pickedDate);
                       controller.text =
                           formattedDate; //set output date to TextField value.
                     });
