@@ -35,11 +35,9 @@ void main() async {
 
   Get.changeThemeMode(isDarkTheme ? ThemeMode.dark : ThemeMode.light);
 
-  // Get.put(SettingController());
   Get.put(DashboardController());
   Get.put(ContactUsController());
   Get.put(LanguageController());
-  // Get.put(FavRadiosController());
   Get.put(RadioDetailController());
   Get.put(NewsController());
   Get.put(BaseController());
