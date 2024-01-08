@@ -16,7 +16,7 @@ void startSleepTimer(BuildContext context) {
         ),
         backgroundColor: CommonColor.secondaryColor,
         icon: Row(
-          children: const [Text('Sleep Timer'), Icon(Icons.timer)],
+          children: const [Icon(Icons.timer), Text('Sleep Timer')],
         ),
         title: const Text("Select sleep duration"),
         content: Wrap(

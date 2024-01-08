@@ -1,7 +1,87 @@
 // import 'package:flutter/material.dart';
 // import 'package:music_streaming_mobile/helper/common_import.dart';
 // import 'package:get/get.dart';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 const adUnitId = "ca-app-pub-3940256099942544/6300978111";
+const adUnitIdIOS = "";
+
+const adUnitIdFull = "ca-app-pub-3940256099942544/5354046379";
+const adUnitIdFullIOS = "";
+
+class AdsHelper {
+  static const AdRequest request = AdRequest(
+    keywords: <String>['foo', 'bar'],
+    contentUrl: 'http://foo.com/bar.html',
+    nonPersonalizedAds: true,
+  );
+  //  String testDevice = 'YOUR_DEVICE_ID';
+  int maxFailedLoadAttempts = 3;
+  // InterstitialAd? _interstitialAd;
+  // int _numInterstitialLoadAttempts = 0;
+
+  static RewardedAd? _rewardedAd;
+  int _numRewardedLoadAttempts = 0;
+
+  void createRewardedAd() {
+    RewardedAd.load(
+        adUnitId: Platform.isAndroid
+            ? adUnitIdFull
+            : 'ca-app-pub-3940256099942544/1712485313',
+        request: request,
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (RewardedAd ad) {
+            print(
+                '$ad loaded.....................................................');
+            _rewardedAd = ad;
+            print("ASSIGNING SUCCESS $_rewardedAd");
+
+            _numRewardedLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            print('RewardedAd failed to load: $error');
+            _rewardedAd = null;
+            _numRewardedLoadAttempts += 1;
+            if (_numRewardedLoadAttempts < maxFailedLoadAttempts) {
+              createRewardedAd();
+            }
+          },
+        ));
+    log("Create Reward...............................");
+  }
+
+  void showRewardedAd() {
+    print("showRewardedAd $_rewardedAd");
+    if (_rewardedAd == null) {
+      print('Warning: attempt to show rewarded before loaded.');
+      return;
+    }
+    _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createRewardedAd();
+      },
+      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createRewardedAd();
+      },
+    );
+
+    _rewardedAd!.setImmersiveMode(true);
+    _rewardedAd!.show(
+        onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+    });
+    _rewardedAd = null;
+  }
+}
 
 // class BannerAds extends StatefulWidget {
 //   const BannerAds({Key? key}) : super(key: key);

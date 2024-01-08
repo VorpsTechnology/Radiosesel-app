@@ -109,8 +109,10 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                             Row(
                               children: [
                                 IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
+                                    onPressed: () async {
+                                      AdsHelper().showRewardedAd();
+
+                                      // Navigator.of(context).pop();
                                     },
                                     icon: const Icon(
                                       Icons.arrow_back,

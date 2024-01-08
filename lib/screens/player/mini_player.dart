@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:music_streaming_mobile/screens/player/player_buttons.dart';
 import 'package:music_streaming_mobile/theme/extention.dart';

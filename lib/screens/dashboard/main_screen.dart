@@ -53,6 +53,7 @@ class MainScreenState extends State<MainScreen> {
     extraData = widget.extraData;
     super.initState();
     initBannerAd();
+    AdsHelper().createRewardedAd();
   }
 
   @override

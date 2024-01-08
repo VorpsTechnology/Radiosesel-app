@@ -48,7 +48,7 @@ dev_dependencies:
   flutter_html: ^3.0.0-alpha.6
   url_launcher: ^6.1.5
   # flutter_inapp_purchase: ^5.3.1
-  google_mobile_ads: ^3.0.0
+  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
