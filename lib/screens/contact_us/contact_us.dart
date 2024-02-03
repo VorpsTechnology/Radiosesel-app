@@ -39,41 +39,39 @@ class _ContactUsState extends State<ContactUs> {
           children: [
             Column(
               children: [
-                // Obx(() => InputField(
-                //       textStyle: Theme.of(context).textTheme.bodyLarge,
-                //       controller: contactUsController.name.value,
-                //       hintText: LocalizationString.name,
-                //       showBorder: false,
-                //       showDivider: true,
-                //     )),
                 const SizedBox(
                   height: 20,
                 ),
-                Obx(() => AbsorbPointer(
-                      child: InputField(
-                        isDisabled: true,
-                        textStyle: Theme.of(context).textTheme.bodyLarge,
-                        controller: contactUsController.subject.value,
-                        hintText: "radiosesel.com@hotmail.com",
-                        showDivider: false,
-                        showBorder: true,
-                        cornerRadius: 10,
-                        borderColor: CommonColor.secondaryColor,
+                Row(
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.start,
+                      text: TextSpan(
+                        text: 'Sent mail to  ',
+                        style: DefaultTextStyle.of(context).style,
+                        children: const <TextSpan>[
+                          TextSpan(
+                              text: 'radiosesel.com@hotmail.com',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: CommonColor.secondaryColor,
+                              )),
+                        ],
                       ),
-                    )),
+                    ),
+                  ],
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-                      Obx(() => AbsorbPointer(
-                      child: InputField(
-                        isDisabled: false,
-                        textStyle: Theme.of(context).textTheme.bodyLarge,
-                        controller: contactUsController.email.value,
-                        hintText: "Enter your email",
-                        showDivider: false,
-                        showBorder: true,
-                        cornerRadius: 10,
-                      ),
+                Obx(() => InputField(
+                      isDisabled: false,
+                      textStyle: Theme.of(context).textTheme.bodyLarge,
+                      controller: contactUsController.email.value,
+                      hintText: "Enter your email",
+                      showDivider: false,
+                      showBorder: true,
+                      cornerRadius: 10,
                     )),
                 const SizedBox(
                   height: 20,

@@ -41,7 +41,7 @@ class _RandomCoverState extends State<RandomCover> {
         currentImg,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitHeight,
       ),
     );
   }

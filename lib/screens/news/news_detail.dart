@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:music_streaming_mobile/components/random_cover.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-class NewsDetail extends StatelessWidget {
+class NewsDetail extends StatefulWidget {
   const NewsDetail(
       {super.key,
       required this.title,
@@ -14,6 +15,28 @@ class NewsDetail extends StatelessWidget {
   final String description;
   final String cover;
   final String date;
+
+  @override
+  State<NewsDetail> createState() => _NewsDetailState();
+}
+
+class _NewsDetailState extends State<NewsDetail> {
+  late BannerAd bannerAd;
+  initBannerAd() {
+    bannerAd = BannerAd(
+        size: AdSize.largeBanner,
+        adUnitId: adUnitId,
+        listener: const BannerAdListener(),
+        request: const AdRequest());
+    bannerAd.load();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initBannerAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +50,7 @@ class NewsDetail extends StatelessWidget {
                 child: Text(
                   'News',
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize:
                           Theme.of(context).textTheme.headlineSmall!.fontSize,
                       fontWeight: FontWeight.bold),
@@ -46,23 +69,23 @@ class NewsDetail extends StatelessWidget {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      Image(image: NetworkImage(cover)).p8,
-                      Text(date).p8,
+                      Image(image: NetworkImage(widget.cover)).p8,
+                      Text(widget.date).p8,
                       Text(
-                        title,
+                        widget.title,
                         style: const TextStyle(
                             fontSize: 22, fontWeight: FontWeight.bold),
                       ).p8,
                       Container(
-                        height: 80,
+                        height: bannerAd.size.height.toDouble(),
                         width: double.infinity,
-                        color: Colors.red,
+                        // color: Colors.red,
                         alignment: Alignment.center,
-                        child: const Text("A D   W I D G E T"),
+                        child: AdWidget(ad: bannerAd),
                       ),
 
                       Html(
-                        data: description,
+                        data: widget.description,
                         style: {
                           "p": Style(
                               fontSize: FontSize.medium,

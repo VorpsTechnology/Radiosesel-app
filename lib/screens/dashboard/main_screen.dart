@@ -76,7 +76,6 @@ class MainScreenState extends State<MainScreen> {
         child: AdWidget(ad: bannerAd),
       ),
       backgroundColor: getBGColor(currentItem),
-      // bottomNavigationBar: bottomNavBar(),
       body: ZoomDrawer(
         // androidCloseOnBackTap: true,
         controller: zoomDrawerController,
@@ -124,7 +123,7 @@ class MainScreenState extends State<MainScreen> {
         builder: (_, value, __) {
           return WeSlide(
               backgroundColor: Theme.of(context).colorScheme.background,
-              panelMinSize: 70,
+              panelMinSize: 60,
               panelMaxSize: panelMaxSize,
               body: getScreen()!,
               // footer: bottomNavBar(),
@@ -139,62 +138,6 @@ class MainScreenState extends State<MainScreen> {
               );
         });
   }
-
-  Widget bottomNavBar() {
-    return BottomNavigationBar(
-      currentIndex: selectedIndex, //New
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Theme.of(context).iconTheme.color),
-          label: LocalizationString.home,
-          backgroundColor: Theme.of(context).backgroundColor,
-        ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.search, color: Theme.of(context).iconTheme.color),
-        //   label: LocalizationString.search,
-        //   backgroundColor: Theme.of(context).backgroundColor,
-        // ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.contact_mail_rounded,
-              color: Theme.of(context).iconTheme.color),
-          label: "Contact Us",
-          backgroundColor: Theme.of(context).backgroundColor,
-        ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.account_circle,
-        //       color: Theme.of(context).iconTheme.color),
-        //   label: LocalizationString.account,
-        //   backgroundColor: Theme.of(context).backgroundColor,
-        // ),
-      ],
-      onTap: _onItemTapped, //New
-    );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-      if (index == 0) {
-        menuType = MenuType.home;
-      } else if (index == 1) {
-        menuType = MenuType.search;
-      } else if (index == 2) {
-        menuType = MenuType.favRadios;
-      } else if (index == 3) {
-        menuType = MenuType.account;
-      }
-    });
-  }
-
-  Widget loadView() {
-    // if (menuType == MenuType.home) {
-    return const Dashboard();
-  }
-
-// getAllSongsFromAlbum(AlbumModel album) {
-//   getIt<PlayerManager>().addPlaylist(album.songs);
-//   getIt<PlayerManager>().play();
-// }
 }
 
 class MenuScreen extends GetView<MyDrawerController> {
@@ -248,7 +191,6 @@ Color getBGColor(MenuItem menuType) {
     return CommonColor.kGreen;
   }
   return CommonColor.kWhite;
-  // }
 }
 
 class MyDrawerController extends GetxController {

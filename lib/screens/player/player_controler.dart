@@ -23,13 +23,7 @@ String _getRandomImage() {
   return randomCovers[randomIndex];
 }
 
-final randomCovers = [
-  "assets/images/bg1.jpg",
-  "assets/images/bg2.jpg",
-  "assets/images/bg3.jpg",
-  "assets/images/bg0.jpg",
-  "assets/images/cover.jpg",
-];
+
 
 class FullSizePlayerControllerState extends State<FullSizePlayerController> {
   final pageManager = getIt<PlayerManager>();
@@ -102,17 +96,14 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // const Spacer(),
                             const SizedBox(
-                              height: 30,
+                              height: 20,
                             ),
                             Row(
                               children: [
                                 IconButton(
                                     onPressed: () async {
                                       AdsHelper().showRewardedAd();
-
-                                      // Navigator.of(context).pop();
                                     },
                                     icon: const Icon(
                                       Icons.arrow_back,
@@ -129,7 +120,6 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                 )
                               ],
                             ),
-                            // const CustomNavigationBar(),
                             ValueListenableBuilder<RadioModel?>(
                               valueListenable:
                                   pageManager.currentRadioChangeNotifier,
@@ -210,8 +200,6 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                             const Spacer(),
                             Container(
                               decoration: BoxDecoration(
-                                // border: Border.all(
-                                //     color: Colors.white10.withAlpha(80)),
                                 color: const Color.fromARGB(255, 27, 26, 26)
                                     .withOpacity(.5),
                                 borderRadius: const BorderRadius.only(
@@ -241,8 +229,6 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                 ],
                               ),
                             ),
-                            // fullScreen == true ? const Spacer() : Container(),
-                            // const Spacer(),
                           ],
                         ),
                       ),

@@ -28,12 +28,15 @@ class ContactUsController extends GetxController {
 
     EasyLoading.show(status: LocalizationString.loading);
     getIt<FirebaseManager>()
-        .sendContactusMessage( email.value.text,
-            subject.value.text, message.value.text)
+        .sendContactusMessage(
+            email.value.text, subject.value.text, message.value.text)
         .then((result) {
       EasyLoading.dismiss();
       if (result.status == true) {
         showMessage(result.message ?? LocalizationString.requestSent, false);
+        email.value.clear();
+        subject.value.clear();
+        message.value.clear();
       } else {
         showMessage(result.message ?? LocalizationString.errorMessage, true);
       }

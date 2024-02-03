@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:music_streaming_mobile/components/random_cover.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
+import 'package:music_streaming_mobile/helper/placeholders.dart';
 import 'package:music_streaming_mobile/manager/news_manager.dart';
 import 'package:music_streaming_mobile/model/news_model.dart';
 import 'package:music_streaming_mobile/screens/news/news_controller.dart';
@@ -15,12 +19,34 @@ class NewsListing extends StatefulWidget {
   State<NewsListing> createState() => _NewsListingState();
 }
 
+List<BannerAd> bannerAds = [];
+Future<List<BannerAd>> generateAds(int count) async {
+  for (int i = 0; i <= count; i++) {
+    BannerAd ad = BannerAd(
+        size: AdSize.banner,
+        adUnitId: adUnitId,
+        listener: const BannerAdListener(),
+        request: const AdRequest());
+    await ad.load();
+    bannerAds.add(ad);
+  }
+  return bannerAds;
+}
+
 class _NewsListingState extends State<NewsListing> {
   final NewsController newsController = Get.find();
+  initBannerAd() {
+    // bannerAds =
+    // bannerAds.load();
+    int count = newsController.news.length ~/ 2;
+    generateAds(10);
+  }
+
   @override
   void initState() {
     super.initState();
     newsController.getNews(0);
+    initBannerAd();
   }
 
   // String category = "";
@@ -45,7 +71,7 @@ class _NewsListingState extends State<NewsListing> {
                   child: Text(
                     'News',
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize:
                             Theme.of(context).textTheme.headlineSmall!.fontSize,
                         fontWeight: FontWeight.bold),
@@ -77,7 +103,7 @@ class _NewsListingState extends State<NewsListing> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                            itemCount: NewsManager().newsCategories.length))
+                            itemCount: NewsManager().newsCategories.length - 1))
                     .p8,
                 Expanded(
                   child: Container(
@@ -86,7 +112,7 @@ class _NewsListingState extends State<NewsListing> {
                           decoration: BoxDecoration(
                               color: Colors.white.withAlpha(180),
                               borderRadius: BorderRadius.circular(15)),
-                          child: newsController.isLoading == false
+                          child: newsController.isLoading.value == false
                               ? ListView.separated(
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) => ListTile(
@@ -131,10 +157,10 @@ class _NewsListingState extends State<NewsListing> {
                                           return Container(
                                             height: 60,
                                             width: double.infinity,
-                                            color: Colors.red,
+                                            // color: Colors.red,
                                             alignment: Alignment.center,
                                             child:
-                                                const Text("A D   W I D G E T"),
+                                                AdWidget(ad: bannerAds[index]),
                                           );
                                         } else {
                                           return const Divider(
@@ -146,12 +172,7 @@ class _NewsListingState extends State<NewsListing> {
                                       },
                                       itemCount: _data.length)
                                   .vP8
-                              : const Center(
-                                  child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator()),
-                                ))
+                              : listShimmer())
                       .vP4,
                 ),
               ],

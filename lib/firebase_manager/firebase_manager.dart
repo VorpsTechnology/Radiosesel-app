@@ -386,7 +386,6 @@ class FirebaseManager {
     DocumentReference doc = contact.doc(id);
     await doc.set({
       'id': id,
-      // 'name': name,
       'email': email,
       'subject': subject,
       'message': message,

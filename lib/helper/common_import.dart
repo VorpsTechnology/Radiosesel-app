@@ -44,4 +44,5 @@ export 'package:music_streaming_mobile/notifiers/radio_change_notifier.dart';
 export 'package:music_streaming_mobile/screens/dashboard/dashboard_components.dart';
 export 'package:music_streaming_mobile/screens/misc/language_controller.dart';
 export 'package:music_streaming_mobile/helper/ad_helper.dart';
+export 'package:music_streaming_mobile/helper/strings.dart';
 

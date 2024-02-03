@@ -11,7 +11,10 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  var devices = ["E4823FBAE26FF01B49728AAAD3D6D40A"];
+  var devices = [
+    "E4823FBAE26FF01B49728AAAD3D6D40A",
+    "D1868151FB6A810A8BCDB11D2F23CA68"
+  ];
 
   await setupServiceLocator();
 
@@ -39,7 +42,6 @@ void main() async {
   Get.put(DashboardController());
   Get.put(ContactUsController());
   Get.put(LanguageController());
-  // Get.put(FavRadiosController());
   Get.put(RadioDetailController());
   Get.put(NewsController());
   Get.put(BaseController());
@@ -73,7 +75,6 @@ class MainApp extends StatefulWidget {
 class MainAppState extends State<MainApp> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getIt<PlayerManager>().init();
   }

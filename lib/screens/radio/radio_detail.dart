@@ -24,35 +24,14 @@ class RadioDetailState extends State<RadioDetail> {
   @override
   void initState() {
     // TODO: implement initState
-    // radioDetailController.setCurrentRadio(widget.radio);
-    // radioDetailController.getSimilarRadios();
-    // radioDetailController.checkIfAlreadyLiked();
-
-    // InterstitialAds().loadInterstitialAd();
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Container(
-          color: Theme.of(context).colorScheme.background,
-          child: Column(
-            children: [
-              radioImage(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  SizedBox(
-                    height: 70,
-                  ),
-                ],
-              ).hP16,
-            ],
-          ),
-        ),
+        Expanded(child: radioImage()),
       ],
     );
   }
@@ -112,46 +91,6 @@ class RadioDetailState extends State<RadioDetail> {
                 .ripple(() {
               radioDetailController.favBtnTapped();
             }))
-      ],
-    );
-  }
-
-  Widget similarRadiosView() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          LocalizationString.similarRadios,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(height: 20),
-        GetBuilder<RadioDetailController>(
-            init: radioDetailController,
-            builder: (ctx) {
-              return SizedBox(
-                height: 165,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: radioDetailController.similarRadios.length,
-                    itemBuilder: (BuildContext ctx, int index) {
-                      return radioView(
-                              radioDetailController.similarRadios[index])
-                          .ripple(() {
-                        Get.to(() => RadioDetail(
-                              radio: radioDetailController.similarRadios[index],
-                            ));
-                      });
-                    },
-                    separatorBuilder: (BuildContext ctx, int index) {
-                      return const SizedBox(
-                        width: 20,
-                      );
-                    }),
-              );
-            })
       ],
     );
   }
