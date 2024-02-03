@@ -6,7 +6,7 @@ import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:music_streaming_mobile/screens/player/sleep_timer.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../components/music_visualizer.dart';
+import '../../components/radio/music_visualizer.dart';
 
 class FullSizePlayerController extends StatefulWidget {
   const FullSizePlayerController({

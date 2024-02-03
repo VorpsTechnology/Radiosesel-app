@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_streaming_mobile/components/disc_animation.dart';
+import 'package:music_streaming_mobile/components/radio/disc_animation.dart';
 import 'package:music_streaming_mobile/components/random_cover.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:get/get.dart';

@@ -23,11 +23,8 @@ class ChangeLanguageState extends State<ChangeLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: BackNavigationBar(
-        title: LocalizationString.selectLanguage,
-        backTapHandler: () {
-          Get.back();
-        },
+      appBar: const CustomNavigationBar(
+       
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -39,10 +39,8 @@ class PrivacyPolicy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: BackNavigationBar(
-        title: LocalizationString.privacyPolicy,backTapHandler: (){
-        Get.back();
-      },
+      appBar: const CustomNavigationBar(
+      
       ),
       body: SingleChildScrollView(
           child: Column(

@@ -12,14 +12,12 @@ import '../player/mini_player.dart';
 //ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
   final RadioModel? radio;
-  final GenreModel? genre;
 
   final String? extraData;
 
   const MainScreen({
     Key? key,
     this.radio,
-    this.genre,
     this.extraData,
   }) : super(key: key);
 
@@ -77,7 +75,6 @@ class MainScreenState extends State<MainScreen> {
       ),
       backgroundColor: getBGColor(currentItem),
       body: ZoomDrawer(
-        // androidCloseOnBackTap: true,
         controller: zoomDrawerController,
         menuScreen: Builder(builder: (context) {
           return MenuScreen(

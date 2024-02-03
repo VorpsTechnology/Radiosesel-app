@@ -413,42 +413,6 @@ class FirebaseManager {
     return languagesList;
   }
 
-  Future<List<GenreModel>> getAllGenres() async {
-    List<GenreModel> genresList = [];
-
-    await genres
-        .where('status', isEqualTo: 1)
-        .get()
-        .then((QuerySnapshot snapshot) {
-      for (var doc in snapshot.docs) {
-        genresList.add(GenreModel.fromJson(doc.data() as Map<String, dynamic>));
-      }
-    }).catchError((error) {
-      response = FirebaseResponse(false, error);
-    });
-
-    return genresList;
-  }
-
-  Future<List<GenreModel>> searchGenres(String text) async {
-    List<GenreModel> genresList = [];
-
-    await genres
-        .where("keywords", arrayContainsAny: [text])
-        .get()
-        .then((QuerySnapshot snapshot) {
-          for (var doc in snapshot.docs) {
-            genresList
-                .add(GenreModel.fromJson(doc.data() as Map<String, dynamic>));
-          }
-        })
-        .catchError((error) {
-          response = FirebaseResponse(false, error);
-        });
-
-    return genresList;
-  }
-
   Future<List<Section>> getHomePageData({String? genreId}) async {
     List<Section> sections = [];
 

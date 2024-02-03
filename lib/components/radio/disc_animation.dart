@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../helper/common_colors.dart';
+import '../../helper/common_colors.dart';
 
 class FooPage extends StatefulWidget {
   const FooPage({super.key});
