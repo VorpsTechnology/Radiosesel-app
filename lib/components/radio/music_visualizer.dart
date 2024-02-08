@@ -78,7 +78,8 @@ class _VisualComponentState extends State<VisualComponent>
   }
 
   void update() {
-    if (mounted) setState(() {});
+    //! TO DO: ANIMATION STATE
+    // if (mounted) setState(() {});
   }
 
   @override
@@ -87,7 +88,56 @@ class _VisualComponentState extends State<VisualComponent>
       width: 3,
       height: animation!.value,
       decoration: BoxDecoration(
-          color: widget.color, borderRadius: BorderRadius.circular(5),boxShadow: [BoxShadow(color: widget.color!,spreadRadius: 1)]),
+          color: widget.color,
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: [BoxShadow(color: widget.color!, spreadRadius: 1)]),
+    );
+  }
+}
+
+class MusicVisualizerEmpty extends StatelessWidget {
+  final List<Color>? colors;
+  final List<int>? duration;
+  final int? barCount;
+
+  const MusicVisualizerEmpty({
+    Key? key,
+    @required this.colors,
+    @required this.duration,
+    @required this.barCount,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List<Widget>.generate(
+            barCount!,
+            (index) => VisualComponents(
+                duration: duration![index % 5], color: colors![index % 4])));
+  }
+}
+
+class VisualComponents extends StatelessWidget {
+  final int? duration;
+  final Color? color;
+
+  const VisualComponents({
+    Key? key,
+    @required this.duration,
+    @required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 3,
+      height: 3,
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: [BoxShadow(color: color!, spreadRadius: 1)]),
     );
   }
 }

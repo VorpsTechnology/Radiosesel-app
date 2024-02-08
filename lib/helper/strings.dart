@@ -5,3 +5,10 @@ final randomCovers = [
   "assets/images/bg0.jpg",
   "assets/images/cover.jpg",
 ];
+
+final sleepTimerCounts = {
+  15: "15 Minutes",
+  30: "30 Minutes",
+  60: "1 Hour",
+  120: "2 Hour"
+};

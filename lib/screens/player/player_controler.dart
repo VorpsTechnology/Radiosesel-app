@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:music_streaming_mobile/screens/player/sleep_timer.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:marquee/marquee.dart';
 import '../../components/radio/music_visualizer.dart';
 
 class FullSizePlayerController extends StatefulWidget {
@@ -22,8 +22,6 @@ String _getRandomImage() {
   final randomIndex = Random().nextInt(randomCovers.length - 1);
   return randomCovers[randomIndex];
 }
-
-
 
 class FullSizePlayerControllerState extends State<FullSizePlayerController> {
   final pageManager = getIt<PlayerManager>();
@@ -135,7 +133,6 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                 );
                               },
                             ).hp(16),
-
                             ValueListenableBuilder<RadioModel?>(
                               valueListenable:
                                   pageManager.currentRadioChangeNotifier,
@@ -144,14 +141,42 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(modal?.name ?? '',
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displaySmall!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: CommonColor.kWhite)),
+                                    ValueListenableBuilder<String>(
+                                        valueListenable:
+                                            pageManager.currentSong,
+                                        builder: (_, modal, __) {
+                                          return SizedBox(
+                                            height: 38,
+                                            child: Marquee(
+                                              text:
+                                                  pageManager.currentSong.value,
+                                              fadingEdgeEndFraction: .1,
+                                              fadingEdgeStartFraction: .1,
+                                              style: TextStyle(
+                                                  fontSize: Theme.of(context)
+                                                      .textTheme
+                                                      .displaySmall
+                                                      ?.fontSize,
+                                                  color: CommonColor.kWhite,
+                                                  fontWeight: FontWeight.bold),
+                                              scrollAxis: Axis.horizontal,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              blankSpace: 20.0,
+                                              velocity: 100.0,
+                                              pauseAfterRound:
+                                                  const Duration(seconds: 10),
+                                              accelerationDuration:
+                                                  const Duration(seconds: 1),
+                                              accelerationCurve: Curves.linear,
+                                              decelerationDuration:
+                                                  const Duration(
+                                                      milliseconds: 500),
+                                              decelerationCurve:
+                                                  Curves.easeInOut,
+                                            ),
+                                          ).hP16;
+                                        }),
                                     const SizedBox(
                                       height: 5,
                                     ),
@@ -181,12 +206,11 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                           duration: duration,
                                         ).p8;
                                       case ButtonState.paused:
-                                        return SizedBox(
-                                            height: 30,
-                                            child: const Divider(
-                                              color: CommonColor.kWhite,
-                                              thickness: 3,
-                                            ).p8);
+                                        return MusicVisualizerEmpty(
+                                          barCount: 50,
+                                          colors: colors,
+                                          duration: duration,
+                                        ).p8;
                                       default:
                                         return MusicVisualizer(
                                           barCount: 50,
@@ -210,13 +234,27 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ThemeIconButton(
-                                    icon: Icons.timer,
-                                    onPress: () async {
-                                      startSleepTimer(context);
-                                    },
-                                    iconColor: CommonColor.secondaryColor,
-                                  ),
+                                  ValueListenableBuilder<ButtonState>(
+                                      valueListenable:
+                                          pageManager.playButtonNotifier,
+                                      builder: (_, value, __) {
+                                        if (value == ButtonState.playing) {
+                                          return ThemeIconButton(
+                                            icon: Icons.timer,
+                                            onPress: () async {
+                                              startSleepTimer(context);
+                                            },
+                                            iconColor:
+                                                CommonColor.secondaryColor,
+                                          );
+                                        } else {
+                                          return ThemeIconButton(
+                                            icon: Icons.info,
+                                            iconColor: Colors.transparent,
+                                            onPress: () {},
+                                          );
+                                        }
+                                      }),
                                   const PlayButton(size: 60),
                                   ThemeIconButton(
                                     icon: Icons.share,

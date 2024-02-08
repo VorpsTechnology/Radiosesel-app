@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
@@ -11,6 +13,7 @@ class PlayerManager {
   final isLastSongNotifier = ValueNotifier<bool>(true);
   final isShuffleModeEnabledNotifier = ValueNotifier<bool>(false);
   final playStateNotifier = ValueNotifier<bool>(false);
+  final currentSong = ValueNotifier<String>("Radiosesel.com");
 
   final FlutterRadioPlayer _flutterRadioPlayer = FlutterRadioPlayer();
 
@@ -22,8 +25,9 @@ class PlayerManager {
   // Events: Calls coming from the UI
   void init() async {}
 
-  Future<void> addPlaylist(
-      {required RadioModel radio,}) async {
+  Future<void> addPlaylist({
+    required RadioModel radio,
+  }) async {
     // stations = allRadios;
     // playingIndex = allRadios.indexWhere((element) => element.id == radio.id);
 
@@ -47,7 +51,13 @@ class PlayerManager {
     }
     await _flutterRadioPlayer.play();
     await _flutterRadioPlayer.setVolume(1);
-
+    _flutterRadioPlayer.metaDataStream?.listen((event) async {
+      print(event);
+      final _splitted=(event!.split(",").first.split("-"));
+      currentSong.value =
+          _splitted.last.replaceAll('"', " ")+_splitted.first.replaceAll('ICY: title="', " , ");
+          
+    });
     playButtonNotifier.value = ButtonState.playing;
 
     currentRadioChangeNotifier.value = radio;
