@@ -4,6 +4,8 @@ import 'package:music_streaming_mobile/helper/common_import.dart';
 
 import '../../manager/helper_manager.dart';
 
+final pageManager = getIt<PlayerManager>();
+
 class DonationScreen extends StatelessWidget {
   const DonationScreen({super.key});
 
@@ -64,6 +66,13 @@ class DonationScreen extends StatelessWidget {
                                       .fontSize),
                             ).vP8,
                           ),
+                          ValueListenableBuilder<ButtonState>(
+                              valueListenable: pageManager.playButtonNotifier,
+                              builder: (_, value, __) {
+                                return SizedBox(
+                                  height: value == ButtonState.playing ? 60 : 0,
+                                );
+                              })
                         ],
                       ),
                     ),
