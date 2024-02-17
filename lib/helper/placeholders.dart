@@ -77,7 +77,6 @@ Widget listShimmer() {
               return Container(
                   height: 60,
                   width: double.infinity,
-                  // color: Colors.red,
                   alignment: Alignment.center,
                   child: const PTile());
             } else {

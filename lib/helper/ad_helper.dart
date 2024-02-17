@@ -1,6 +1,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:music_streaming_mobile/helper/common_import.dart';
 // import 'package:get/get.dart';
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -9,8 +11,11 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 const adUnitId = "ca-app-pub-3940256099942544/6300978111";
 const adUnitIdIOS = "";
 
-const adUnitIdFull = "ca-app-pub-3940256099942544/5354046379";
+const adUnitIdFull = "ca-app-pub-3940256099942544/5224354917";
 const adUnitIdFullIOS = "";
+
+const adUnitIdFullInterstrial = "ca-app-pub-3940256099942544/5354046379";
+const adUnitIdInterstrial = "ca-app-pub-3940256099942544/1033173712";
 
 class AdsHelper {
   static const AdRequest request = AdRequest(
@@ -25,8 +30,14 @@ class AdsHelper {
 
   static RewardedAd? _rewardedAd;
   int _numRewardedLoadAttempts = 0;
+  RewardedInterstitialAd? _rewardedInterstitialAd;
+  int _numRewardedInterstitialLoadAttempts = 0;
 
+  InterstitialAd? _interstitialAd;
+  int _numInterstitialLoadAttempts = 0;
   void createRewardedAd() {
+    log("Creating Rewarded...............................");
+
     RewardedAd.load(
         adUnitId: Platform.isAndroid
             ? adUnitIdFull
@@ -81,134 +92,107 @@ class AdsHelper {
     });
     _rewardedAd = null;
   }
+
+  void createRewardedInterstitialAd() {
+    log("Creating Rewarded Interstitial...............................");
+    RewardedInterstitialAd.load(
+        adUnitId: Platform.isAndroid
+            ? adUnitIdFullInterstrial
+            : 'ca-app-pub-3940256099942544/6978759866',
+        request: request,
+        rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
+          onAdLoaded: (RewardedInterstitialAd ad) {
+            print('$ad loaded.');
+            _rewardedInterstitialAd = ad;
+            _numRewardedInterstitialLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            print('RewardedInterstitialAd failed to load: $error');
+            _rewardedInterstitialAd = null;
+            _numRewardedInterstitialLoadAttempts += 1;
+            if (_numRewardedInterstitialLoadAttempts < maxFailedLoadAttempts) {
+              createRewardedInterstitialAd();
+            }
+          },
+        ));
+  }
+
+  void showRewardedInterstitialAd() {
+    if (_rewardedInterstitialAd == null) {
+      print('Warning: attempt to show rewarded interstitial before loaded.');
+      return;
+    }
+    _rewardedInterstitialAd!.fullScreenContentCallback =
+        FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedInterstitialAd ad) =>
+          print('$ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedInterstitialAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createRewardedInterstitialAd();
+      },
+      onAdFailedToShowFullScreenContent:
+          (RewardedInterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createRewardedInterstitialAd();
+      },
+    );
+
+    _rewardedInterstitialAd!.setImmersiveMode(true);
+    _rewardedInterstitialAd!.show(
+        onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+    });
+    _rewardedInterstitialAd = null;
+  }
+
+  void createInterstitialAd() {
+    log("Creating Interstitial...............................");
+
+    InterstitialAd.load(
+        adUnitId: Platform.isAndroid
+            ? adUnitIdInterstrial
+            : 'ca-app-pub-3940256099942544/4411468910',
+        request: request,
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (InterstitialAd ad) {
+            print('$ad loaded');
+            _interstitialAd = ad;
+            _numInterstitialLoadAttempts = 0;
+            _interstitialAd!.setImmersiveMode(true);
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            print('InterstitialAd failed to load: $error.');
+            _numInterstitialLoadAttempts += 1;
+            _interstitialAd = null;
+            if (_numInterstitialLoadAttempts < maxFailedLoadAttempts) {
+              createInterstitialAd();
+            }
+          },
+        ));
+  }
+
+  void showInterstitialAd() {
+    if (_interstitialAd == null) {
+      print('Warning: attempt to show interstitial before loaded.');
+      return;
+    }
+    _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (InterstitialAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createInterstitialAd();
+      },
+      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createInterstitialAd();
+      },
+    );
+    _interstitialAd!.show();
+    _interstitialAd = null;
+  }
 }
-
-// class BannerAds extends StatefulWidget {
-//   const BannerAds({Key? key}) : super(key: key);
-
-//   @override
-//   _BannerAdsState createState() => _BannerAdsState();
-// }
-
-// class _BannerAdsState extends State<BannerAds> {
-//   final SettingController settingController = Get.find();
-
-//   // TODO: Add _bannerAd
-//   BannerAd? bannerAd;
-
-//   String? bannerId;
-
-//   // TODO: Add _isBannerAdReady
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     prepare();
-//   }
-
-//   prepare() async {
-//     bool isPro = await SharedPrefs().isProMode();
-
-//     if (Platform.isAndroid) {
-//       if (settingController.settings.androidAdmobBannerId != null) {
-//         bannerId = settingController.settings.androidAdmobBannerId!;
-//       }
-//     } else if (Platform.isIOS) {
-//       if (settingController.settings.iOSAdmobBannerId != null) {
-//         bannerId = settingController.settings.iOSAdmobBannerId!;
-//       }
-//     }
-
-//     if (isPro == false && bannerId != null) {
-//       loadAds();
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.topCenter,
-//       child: SizedBox(
-//         width: MediaQuery.of(context).size.width,
-//         height: bannerAd == null ? 0 : bannerAd!.size.height.toDouble(),
-//         child:  bannerAd == null ? Container() : AdWidget(ad: bannerAd!),
-//       ),
-//     );
-//   }
-
-//   void loadAds() {
-//     // TODO: Initialize _bannerAd
-//     bannerAd = BannerAd(
-//       adUnitId: bannerId!,
-//       request: const AdRequest(),
-//       size: AdSize.banner,
-//       listener: BannerAdListener(
-//         onAdLoaded: (_) {
-//           setState(() {});
-//         },
-//         onAdFailedToLoad: (ad, err) {
-//           //ad.dispose();
-//         },
-//       ),
-//     );
-//     bannerAd!.load();
-//   }
-// }
-
-// //ignore: must_be_immutable
-// class InterstitialAds extends StatelessWidget {
-//   InterstitialAds({Key? key}) : super(key: key);
-
-//   // TODO: Add _interstitialAd
-//   InterstitialAd? _interstitialAd;
-
-//   // TODO: Add _isInterstitialAdReady
-//   bool isInterstitialAdReady = false;
-
-//   String? interstitialId;
-
-//   final SettingController settingController = Get.find();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-
-//   void loadInterstitialAd() async {
-//     bool isPro = await SharedPrefs().isProMode();
-
-//     if (Platform.isAndroid) {
-//       if (settingController.settings.androidAdmobInterstitailId != null) {
-//         interstitialId = settingController.settings.androidAdmobInterstitailId!;
-//       }
-//     } else if (Platform.isIOS) {
-//       if (settingController.settings.iOSAdmobInterstitailId != null) {
-//         interstitialId = settingController.settings.iOSAdmobInterstitailId!;
-//       }
-//     }
-
-//     if (isPro == true || interstitialId == null) {
-//       return;
-//     }
-
-//     InterstitialAd.load(
-//       adUnitId: interstitialId!,
-//       request: const AdRequest(),
-//       adLoadCallback: InterstitialAdLoadCallback(
-//         onAdLoaded: (ad) {
-//           _interstitialAd = ad;
-//           _interstitialAd?.show();
-
-//           ad.fullScreenContentCallback = FullScreenContentCallback(
-//             onAdDismissedFullScreenContent: (ad) {},
-//           );
-
-//           isInterstitialAdReady = true;
-//         },
-//         onAdFailedToLoad: (err) {
-//           isInterstitialAdReady = false;
-//         },
-//       ),
-//     );
-//   }
-// }

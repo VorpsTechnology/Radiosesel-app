@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:music_streaming_mobile/helper/ad_helper.dart';
 
 class AdsHelper {
   static const AdRequest request = AdRequest(
@@ -149,10 +151,10 @@ class AdsHelper {
     _rewardedAd = null;
   }
 
-  void _createRewardedInterstitialAd() {
+  void createRewardedInterstitialAd() {
     RewardedInterstitialAd.load(
         adUnitId: Platform.isAndroid
-            ? 'ca-app-pub-3940256099942544/5354046379'
+            ? adUnitIdFullInterstrial
             : 'ca-app-pub-3940256099942544/6978759866',
         request: request,
         rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
@@ -166,7 +168,7 @@ class AdsHelper {
             _rewardedInterstitialAd = null;
             _numRewardedInterstitialLoadAttempts += 1;
             if (_numRewardedInterstitialLoadAttempts < maxFailedLoadAttempts) {
-              _createRewardedInterstitialAd();
+              createRewardedInterstitialAd();
             }
           },
         ));
@@ -174,7 +176,7 @@ class AdsHelper {
 
   void showRewardedInterstitialAd() {
     if (_rewardedInterstitialAd == null) {
-      print('Warning: attempt to show rewarded interstitial before loaded.');
+      log('Warning: attempt to show rewarded interstitial before loaded.');
       return;
     }
     _rewardedInterstitialAd!.fullScreenContentCallback =
@@ -184,13 +186,13 @@ class AdsHelper {
       onAdDismissedFullScreenContent: (RewardedInterstitialAd ad) {
         print('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
-        _createRewardedInterstitialAd();
+        createRewardedInterstitialAd();
       },
       onAdFailedToShowFullScreenContent:
           (RewardedInterstitialAd ad, AdError error) {
         print('$ad onAdFailedToShowFullScreenContent: $error');
         ad.dispose();
-        _createRewardedInterstitialAd();
+        createRewardedInterstitialAd();
       },
     );
 

@@ -55,7 +55,7 @@ class SmallSizePlayerControllerState extends State<SmallSizePlayerController> {
                                       pageManager.currentRadioChangeNotifier,
                                   builder: (_, modal, __) {
                                     return Image.asset(
-                                      modal!.image,
+                                      "assets/images/bg1.jpg",
                                       height: 40,
                                       width: 40,
                                       fit: BoxFit.cover,
@@ -75,11 +75,28 @@ class SmallSizePlayerControllerState extends State<SmallSizePlayerController> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(modal?.name ?? '',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(color: Colors.white)),
+                                    ValueListenableBuilder<String>(
+                                        valueListenable:
+                                            pageManager.currentSong,
+                                        builder: (_, modal, __) {
+                                          return SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.55,
+                                            child: Text(
+                                              pageManager.currentSong.value,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                    color: Colors.white,
+                                                    overflow: TextOverflow.fade,
+                                                  ),
+                                              maxLines: 1,
+                                            ),
+                                          );
+                                        }),
                                     const SizedBox(
                                       height: 5,
                                     ),

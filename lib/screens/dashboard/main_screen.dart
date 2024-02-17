@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/config.dart';
+// import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
@@ -51,7 +51,7 @@ class MainScreenState extends State<MainScreen> {
     extraData = widget.extraData;
     super.initState();
     initBannerAd();
-    AdsHelper().createRewardedAd();
+    AdsHelper().createInterstitialAd();
   }
 
   @override
@@ -194,7 +194,6 @@ class MyDrawerController extends GetxController {
   final zoomDrawerController = ZoomDrawerController();
 
   void toggleDrawer() {
-    print("Toggle drawer");
     zoomDrawerController.toggle?.call();
     update();
   }

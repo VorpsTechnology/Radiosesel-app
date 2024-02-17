@@ -103,7 +103,7 @@ class _NewsListingState extends State<NewsListing> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                            itemCount: NewsManager().newsCategories.length - 1))
+                            itemCount: NewsManager().newsCategories.length - 2))
                     .p8,
                 Expanded(
                   child: Container(

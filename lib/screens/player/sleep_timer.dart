@@ -1,11 +1,7 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:music_streaming_mobile/helper/common_colors.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 
-import '../../manager/player_manager.dart';
-import '../../services/service_locator.dart';
 
 Future<dynamic> startSleepTimer(BuildContext context) async =>
     showModalBottomSheet(
@@ -51,7 +47,8 @@ Future<dynamic> startSleepTimer(BuildContext context) async =>
           SheetEntry(
               onTap: () =>
                   startTimer(sleepTimerCounts.keys.toList()[1], context),
-              title: "Cancel")
+              title: "Cancel"),
+          const Spacer() 
         ]),
       ),
     );

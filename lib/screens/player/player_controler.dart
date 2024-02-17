@@ -23,7 +23,8 @@ String _getRandomImage() {
   return randomCovers[randomIndex];
 }
 
-class FullSizePlayerControllerState extends State<FullSizePlayerController> {
+class FullSizePlayerControllerState extends State<FullSizePlayerController>
+    with TickerProviderStateMixin {
   final pageManager = getIt<PlayerManager>();
   double coverImageSize = 40;
   double playerHeight = 80;
@@ -51,13 +52,50 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
     800,
     500,
   ];
-
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn,
+  );
+  Timer? _timer;
+  DateTime? _lastAdTime;
   @override
   void initState() {
     super.initState();
-
     final newImage = _getRandomImage();
+    _startTimer();
     setState(() => currentImage = newImage);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _timer!.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    // Start a timer to check for ad display every minute
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      // Check if 15 minutes have passed since the last ad display
+      if (_lastAdTime == null ||
+          DateTime.now().difference(_lastAdTime!) >=
+              const Duration(minutes: 2)) {
+        // Show Google ad
+        _showGoogleAd();
+        // Update last ad time
+        _lastAdTime = DateTime.now();
+      }
+    });
+  }
+
+  void _showGoogleAd() {
+    AdsHelper().showInterstitialAd();
+
+    // AdsHelper().showRewardedAd();
   }
 
   @override
@@ -101,7 +139,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController> {
                               children: [
                                 IconButton(
                                     onPressed: () async {
-                                      AdsHelper().showRewardedAd();
+                                      // AdsHelper().showRewardedAd();
                                     },
                                     icon: const Icon(
                                       Icons.arrow_back,

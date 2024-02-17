@@ -44,16 +44,16 @@ class NewsManager {
     "All",
     "Business",
     "National",
-    "Environment",
     "Entertainment",
+    "Environment",
     "Best in Seychelles"
   ];
   final newsCategoriesApi = [
     "",
     "/1/Business",
     "/2/National",
-    "/4/Environment",
     "/5/Entertainment",
+    "/4/Environment",
     "Best in Seychelles"
   ];
 }

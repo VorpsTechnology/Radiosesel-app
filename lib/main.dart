@@ -19,6 +19,7 @@ void main() async {
   await setupServiceLocator();
 
   await Firebase.initializeApp(
+    name: "radiosesel-7d945",
     options: const FirebaseOptions(
         apiKey: "AIzaSyCflv0PsP2sxDKyFtNZb0KCfLga9lOmGgU",
         authDomain: "radiosesel-7d945.firebaseapp.com",

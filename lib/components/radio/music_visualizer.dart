@@ -60,7 +60,9 @@ class _VisualComponentState extends State<VisualComponent>
     animation!.removeListener(() {});
     animation!.removeStatusListener((status) {});
     animationController!.stop();
-    animationController!.reset();
+
+    //! TO DO: animation controller reset 
+    // animationController!.reset();
     animationController!.dispose();
     super.dispose();
   }
@@ -79,7 +81,9 @@ class _VisualComponentState extends State<VisualComponent>
 
   void update() {
     //! TO DO: ANIMATION STATE
-    // if (mounted) setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
