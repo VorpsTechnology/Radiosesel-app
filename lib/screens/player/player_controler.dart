@@ -83,19 +83,16 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
       // Check if 15 minutes have passed since the last ad display
       if (_lastAdTime == null ||
           DateTime.now().difference(_lastAdTime!) >=
-              const Duration(minutes: 2)) {
-        // Show Google ad
+                  const Duration(minutes: 15) &&
+              pageManager.playButtonNotifier.value == ButtonState.playing) {
         _showGoogleAd();
-        // Update last ad time
         _lastAdTime = DateTime.now();
       }
     });
   }
 
   void _showGoogleAd() {
-    AdsHelper().showInterstitialAd();
-
-    // AdsHelper().showRewardedAd();
+    AdsHelper().showRewardedAd();
   }
 
   @override
