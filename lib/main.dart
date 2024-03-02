@@ -9,7 +9,7 @@ import 'package:music_streaming_mobile/screens/radio/radio_detail_controller.dar
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); 
   await EasyLocalization.ensureInitialized();
   var devices = [
     "E4823FBAE26FF01B49728AAAD3D6D40A",

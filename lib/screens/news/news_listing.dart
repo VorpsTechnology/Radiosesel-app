@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,7 +59,7 @@ class _NewsListingState extends State<NewsListing> {
         body: SafeArea(
       child: Stack(
         children: [
-          const RandomCover(),
+          const GradientBG(),
           GetBuilder<NewsController>(builder: (ctx) {
             List<Item> _data = newsController.news;
 

@@ -39,7 +39,7 @@ class RadioDetailState extends State<RadioDetail> {
   Widget radioImage() {
     return Stack(
       children: [
-        const RandomCover(),
+        const GradientBG(),
         Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,

@@ -420,7 +420,7 @@ packages:
     source: hosted
     version: "5.2.0"
   flutter_test:
-    dependency: "direct main"
+    dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"

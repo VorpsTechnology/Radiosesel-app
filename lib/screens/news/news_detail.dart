@@ -43,7 +43,7 @@ class _NewsDetailState extends State<NewsDetail> {
       body: SafeArea(
           child: Stack(
         children: [
-          const RandomCover(),
+          const GradientBG(),
           Column(
             children: [
               CustomNavigationBar(

@@ -24,7 +24,7 @@ class MusicVisualizer extends StatelessWidget {
             (index) => VisualComponent(
                 curve: curve!,
                 duration: duration![index % 5],
-                color: colors![index % 4])));
+                color: colors![index % 8])));
   }
 }
 
@@ -61,7 +61,7 @@ class _VisualComponentState extends State<VisualComponent>
     animation!.removeStatusListener((status) {});
     animationController!.stop();
 
-    //! TO DO: animation controller reset 
+    //! TO DO: animation controller reset
     // animationController!.reset();
     animationController!.dispose();
     super.dispose();
@@ -89,12 +89,12 @@ class _VisualComponentState extends State<VisualComponent>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 3,
+      width: 2,
       height: animation!.value,
       decoration: BoxDecoration(
           color: widget.color,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: [BoxShadow(color: widget.color!, spreadRadius: 1)]),
+          boxShadow: [BoxShadow(color: widget.color!, spreadRadius: 2)]),
     );
   }
 }
@@ -119,7 +119,7 @@ class MusicVisualizerEmpty extends StatelessWidget {
         children: List<Widget>.generate(
             barCount!,
             (index) => VisualComponents(
-                duration: duration![index % 5], color: colors![index % 4])));
+                duration: duration![index % 5], color: colors![index % 8])));
   }
 }
 

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:music_streaming_mobile/components/random_cover.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 import 'package:music_streaming_mobile/screens/player/sleep_timer.dart';
 import 'package:share_plus/share_plus.dart';
@@ -29,10 +30,24 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
   double coverImageSize = 40;
   double playerHeight = 80;
   final List<Color> colors = [
-    const Color.fromARGB(255, 255, 0, 0),
-    const Color.fromARGB(255, 255, 0, 0),
-    const Color.fromARGB(255, 250, 147, 3),
-    const Color.fromARGB(255, 250, 147, 3),
+    // const Color.fromARGB(255, 255, 0, 0),
+    // const Color.fromARGB(255, 255, 0, 0),
+    // const Color.fromARGB(255, 250, 147, 3),
+    // const Color.fromARGB(255, 250, 147, 3),
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.cyan,
+    Colors.blue,
+    Colors.purple,
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.cyan,
+    Colors.blue,
+    Colors.purple
   ];
   String currentImage = 'assets/images/cover.jpg';
   final List<int> duration = [
@@ -65,9 +80,9 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
   @override
   void initState() {
     super.initState();
-    final newImage = _getRandomImage();
+    // final newImage = _getRandomImage();
     _startTimer();
-    setState(() => currentImage = newImage);
+    // setState(() => currentImage = newImage);
   }
 
   @override
@@ -102,14 +117,14 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
         builder: (_, value, __) {
           return value == false
               ? Container()
-              : Container(
-                  height: MediaQuery.of(context).size.height - 100,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(currentImage), fit: BoxFit.fitHeight),
-                    color: Theme.of(context).colorScheme.background,
-                  ),
+              : GradientBG(
+                  // height: MediaQuery.of(context).size.height - 100,
+                  // width: double.infinity,
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //       image: AssetImage(currentImage), fit: BoxFit.fitHeight),
+                  //   color: Theme.of(context).colorScheme.background,
+                  // ),
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white10.withAlpha(80)),
@@ -158,13 +173,14 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
                                   pageManager.currentRadioChangeNotifier,
                               builder: (_, modal, __) {
                                 return Center(
-                                  child: Image.asset(
-                                    "assets/images/bg1.jpg",
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.5,
-                                  ).round(5),
+                                  // child: Image.asset(
+                                  //   "assets/images/bg1.jpg",
+                                  //   fit: BoxFit.cover,
+                                  //   width: double.infinity,
+                                  //   height: MediaQuery.of(context).size.height *
+                                  //       0.5,
+                                  // ).round(5),
+                                  child: const RandomCover().round(5),
                                 );
                               },
                             ).hp(16),
