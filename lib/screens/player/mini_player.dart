@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_streaming_mobile/screens/misc/base_controller.dart';
 import 'package:music_streaming_mobile/screens/player/player_buttons.dart';
 import 'package:music_streaming_mobile/theme/extention.dart';
 
+import '../../components/radio/disc_animation.dart';
 import '../../manager/player_manager.dart';
 import '../../model/radio_model.dart';
 import '../../services/service_locator.dart';
@@ -60,11 +62,17 @@ class SmallSizePlayerControllerState extends State<SmallSizePlayerController> {
                                   builder: (_, modal, __) {
                                     return GetBuilder<BaseController>(
                                         builder: (context) {
-                                      return Image.network(
-                                        baseController.currentBG.value,
+                                      return CachedNetworkImage(
+                                        imageUrl:
+                                            baseController.currentBG.value,
                                         height: 40,
                                         width: 40,
                                         fit: BoxFit.cover,
+                                        placeholder: (context, url) =>
+                                             Image.asset("assets/icons/disc.png"),
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(
+                                                "assets/images/no_data.png"),
                                       ).round(5);
                                     });
                                   },

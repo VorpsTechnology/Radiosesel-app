@@ -10,8 +10,7 @@ class BaseController extends GetxController {
 
   RxString currentBG = randomCovers.first.obs;
   loadBG() {
-    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
-      print("TIMER ------- RUNNING ------- PROPERLY");
+    _timer = Timer.periodic(const Duration(minutes: 6), (timer) {
       int _current = _random.nextInt(randomCovers.length);
       currentBG.value = randomCovers[_current];
       update();

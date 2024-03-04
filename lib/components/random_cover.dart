@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:music_streaming_mobile/components/radio/disc_animation.dart';
 import 'package:music_streaming_mobile/screens/misc/base_controller.dart';
 
 class RandomCover extends StatelessWidget {
@@ -15,11 +17,17 @@ class RandomCover extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 2.2,
       width: MediaQuery.of(context).size.width * .8,
       child: GetBuilder<BaseController>(builder: (ctx) {
-        return Image.network(
-          baseController.currentBG.value,
+        // return Image.network(
+        //   baseController.currentBG.value,
+        // );
+        return CachedNetworkImage(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.cover,
+          imageUrl: baseController.currentBG.value,
+          placeholder: (context, url) => const FooPage(),
+          errorWidget: (context, url, error) =>
+              Image.asset("assets/images/no_data.png"),
         );
       }),
     );
