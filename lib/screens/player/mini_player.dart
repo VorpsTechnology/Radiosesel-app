@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:music_streaming_mobile/screens/misc/base_controller.dart';
 import 'package:music_streaming_mobile/screens/player/player_buttons.dart';
 import 'package:music_streaming_mobile/theme/extention.dart';
 
@@ -18,6 +20,8 @@ class SmallSizePlayerController extends StatefulWidget {
 
 class SmallSizePlayerControllerState extends State<SmallSizePlayerController> {
   final pageManager = getIt<PlayerManager>();
+  final BaseController baseController = Get.find();
+
   double coverImageSize = 40;
   double playerHeight = 80;
 
@@ -54,12 +58,15 @@ class SmallSizePlayerControllerState extends State<SmallSizePlayerController> {
                                   valueListenable:
                                       pageManager.currentRadioChangeNotifier,
                                   builder: (_, modal, __) {
-                                    return Image.asset(
-                                      "assets/images/bg1.jpg",
-                                      height: 40,
-                                      width: 40,
-                                      fit: BoxFit.cover,
-                                    ).round(5);
+                                    return GetBuilder<BaseController>(
+                                        builder: (context) {
+                                      return Image.network(
+                                        baseController.currentBG.value,
+                                        height: 40,
+                                        width: 40,
+                                        fit: BoxFit.cover,
+                                      ).round(5);
+                                    });
                                   },
                                 ).vP16,
                                 const SizedBox(

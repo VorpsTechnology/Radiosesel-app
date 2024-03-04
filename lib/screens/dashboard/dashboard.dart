@@ -47,5 +47,4 @@ class DashboardState extends State<Dashboard> {
           searchCount: 0),
     );
   }
-
 }

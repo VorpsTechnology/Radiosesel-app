@@ -1,9 +1,17 @@
 final randomCovers = [
-  "assets/images/bg1.jpg",
-  "assets/images/bg2.jpg",
-  "assets/images/bg3.jpg",
-  "assets/images/bg0.jpg",
-  "assets/images/cover.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450524/BG%20Images/bg0.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450537/BG%20Images/bg1.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450536/BG%20Images/bg2.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450536/BG%20Images/bg3.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450531/BG%20Images/bg4.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450531/BG%20Images/bg5.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450527/BG%20Images/bg6.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450527/BG%20Images/bg7.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450527/BG%20Images/bg8.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450526/BG%20Images/bg9.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450526/BG%20Images/bg10.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450525/BG%20Images/bg11.jpg",
+  "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450525/BG%20Images/bg12.jpg",
 ];
 
 final sleepTimerCounts = {

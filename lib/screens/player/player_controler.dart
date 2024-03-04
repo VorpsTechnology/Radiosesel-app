@@ -168,21 +168,8 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
                                 )
                               ],
                             ),
-                            ValueListenableBuilder<RadioModel?>(
-                              valueListenable:
-                                  pageManager.currentRadioChangeNotifier,
-                              builder: (_, modal, __) {
-                                return Center(
-                                  // child: Image.asset(
-                                  //   "assets/images/bg1.jpg",
-                                  //   fit: BoxFit.cover,
-                                  //   width: double.infinity,
-                                  //   height: MediaQuery.of(context).size.height *
-                                  //       0.5,
-                                  // ).round(5),
-                                  child: const RandomCover().round(5),
-                                );
-                              },
+                            Center(
+                              child: RandomCover().round(5),
                             ).hp(16),
                             ValueListenableBuilder<RadioModel?>(
                               valueListenable:
