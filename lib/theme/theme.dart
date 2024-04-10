@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
 
+enum Font { lato, openSans, poppins, raleway, roboto }
 
-enum Font {
-  lato,
-  openSans,
-  poppins,
-  raleway,
-  roboto
-}
+enum DisplayMode { light, dark }
 
-enum DisplayMode{
-  light,
-  dark
-}
-
-class AppThemeSetting{
+class AppThemeSetting {
   static DisplayMode mode = DisplayMode.light;
 
-  static setDisplayMode(DisplayMode currentMode){
+  static setDisplayMode(DisplayMode currentMode) {
     mode = currentMode;
   }
 }
@@ -55,7 +45,7 @@ class AppTheme {
         headlineSmall: TextStyle(
             fontSize: FontSizes.sizeXl, color: const Color(0xffecf0f1)),
         bodyLarge:
-        TextStyle(fontSize: FontSizes.body, color: const Color(0xffffffff)),
+            TextStyle(fontSize: FontSizes.body, color: const Color(0xffffffff)),
         bodyMedium: TextStyle(
             fontSize: FontSizes.bodySm, color: const Color(0xffffffff)),
         bodySmall: TextStyle(
@@ -91,7 +81,7 @@ class AppTheme {
         headlineSmall: TextStyle(
             fontSize: FontSizes.sizeXl, color: const Color(0xff576574)),
         bodyLarge:
-        TextStyle(fontSize: FontSizes.body, color: const Color(0xff000000)),
+            TextStyle(fontSize: FontSizes.body, color: const Color(0xff000000)),
         bodyMedium: TextStyle(
             fontSize: FontSizes.bodySm, color: const Color(0xff000000)),
         bodySmall: TextStyle(
@@ -116,5 +106,7 @@ class AppTheme {
       buttonTheme: const ButtonThemeData(
         buttonColor: Color(0xff25D1AC),
         disabledColor: Color(0xff808080),
-      ));
+      ),
+      timePickerTheme:
+          const TimePickerThemeData(dialBackgroundColor: CommonColor.secondaryColor));
 }
