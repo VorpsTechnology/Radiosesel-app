@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'package:music_streaming_mobile/screens/dashboard/dashboard_controller.dart';
 import 'package:music_streaming_mobile/screens/contact_us/contactus_controller.dart';
 import 'package:music_streaming_mobile/screens/misc/base_controller.dart';
+import 'package:music_streaming_mobile/screens/misc/sleep_timer_controller.dart';
 import 'package:music_streaming_mobile/screens/news/news_controller.dart';
 import 'package:music_streaming_mobile/screens/radio/radio_detail_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   var devices = [
     "E4823FBAE26FF01B49728AAAD3D6D40A",
@@ -46,6 +47,7 @@ void main() async {
   Get.put(RadioDetailController());
   Get.put(NewsController());
   Get.put(BaseController());
+  Get.put(SleepTimerController());
 
   runApp(
     EasyLocalization(

@@ -14,9 +14,4 @@ final randomCovers = [
   "https://res.cloudinary.com/dgq9dra5u/image/upload/v1709450525/BG%20Images/bg12.jpg",
 ];
 
-final sleepTimerCounts = {
-  15: "15 Minutes",
-  30: "30 Minutes",
-  60: "1 Hour",
-  120: "2 Hour"
-};
+final sleepTimerCounts = {15: "15 Minutes", 30: "30 Minutes", 60: "1 Hour"};
