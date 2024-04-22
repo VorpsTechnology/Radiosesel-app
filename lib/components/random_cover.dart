@@ -25,7 +25,9 @@ class RandomCover extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.cover,
           imageUrl: baseController.currentBG.value,
-          placeholder: (context, url) => const FooPage(),
+          placeholder: (context, url) => const FooPage(
+            textVisible: false,
+          ),
           errorWidget: (context, url, error) =>
               Image.asset("assets/images/no_data.png"),
         );

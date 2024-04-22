@@ -5,7 +5,6 @@ import 'package:music_streaming_mobile/screens/misc/base_controller.dart';
 import 'package:music_streaming_mobile/screens/player/player_buttons.dart';
 import 'package:music_streaming_mobile/theme/extention.dart';
 
-import '../../components/radio/disc_animation.dart';
 import '../../manager/player_manager.dart';
 import '../../model/radio_model.dart';
 import '../../services/service_locator.dart';

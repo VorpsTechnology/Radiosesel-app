@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../helper/common_colors.dart';
 
 class FooPage extends StatefulWidget {
-  const FooPage({super.key});
-
+  const FooPage({super.key, this.textVisible = true});
+  final bool textVisible;
   @override
   _FooPageState createState() => _FooPageState();
 }
@@ -41,13 +41,15 @@ class _FooPageState extends State<FooPage> with SingleTickerProviderStateMixin {
             ),
             Align(
               alignment: Alignment.center,
-              child: Text(
-                "LISTEN",
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: CommonColor.kWhite,
-                    letterSpacing: 11,
-                    fontWeight: FontWeight.bold),
-              ),
+              child: widget.textVisible
+                  ? Text(
+                      "LISTEN",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: CommonColor.kWhite,
+                          letterSpacing: 11,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : null,
             ),
           ],
         ),

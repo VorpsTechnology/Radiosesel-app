@@ -15,7 +15,7 @@ class BaseController extends GetxController {
       currentBG.value = randomCovers[_current];
       update();
     });
-    update();
+    // update();
   }
 
   @override
