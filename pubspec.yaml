@@ -16,7 +16,7 @@ dependencies:
   # admob_flutter: ^3.0.0
   cupertino_icons: ^1.0.2
   audio_service: 
-  firebase_crashlytics: ^2.8.2
+  firebase_crashlytics: 
   xml: ^6.2.2
   xml2json: ^5.3.6
   flutter_zoom_drawer: ^3.0.4+1

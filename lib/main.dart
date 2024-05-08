@@ -27,7 +27,7 @@ void main() async {
         projectId: "radiosesel-7d945",
         storageBucket: "radiosesel-7d945.appspot.com",
         messagingSenderId: "1072836679751",
-        appId: "1:1072836679751:web:f09e07144539fe81d1b962",
+        appId: "1:1072836679751:android:25318a04cf3c7ea0d1b962",
         measurementId: "G-7G7PHVPZ0M"),
   );
   await MobileAds.instance.initialize();

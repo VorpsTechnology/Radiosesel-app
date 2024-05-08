@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:music_streaming_mobile/helper/common_import.dart';
@@ -52,11 +50,9 @@ class PlayerManager {
     await _flutterRadioPlayer.play();
     await _flutterRadioPlayer.setVolume(1);
     _flutterRadioPlayer.metaDataStream?.listen((event) async {
-      print(event);
-      final _splitted=(event!.split(",").first.split("-"));
-      currentSong.value =
-          _splitted.last.replaceAll('"', " ")+_splitted.first.replaceAll('ICY: title="', " , ");
-          
+      final _splitted = (event!.split(",").first.split("-"));
+      currentSong.value = _splitted.last.replaceAll('"', " ") +
+          _splitted.first.replaceAll('ICY: title="', " - ");
     });
     playButtonNotifier.value = ButtonState.playing;
 

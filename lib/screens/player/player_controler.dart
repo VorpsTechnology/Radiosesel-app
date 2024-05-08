@@ -196,6 +196,7 @@ class FullSizePlayerControllerState extends State<FullSizePlayerController>
                                                       .displaySmall
                                                       ?.fontSize,
                                                   color: CommonColor.kWhite,
+                                                  fontFamily: 'Raleway',
                                                   fontWeight: FontWeight.bold),
                                               scrollAxis: Axis.horizontal,
                                               crossAxisAlignment:
