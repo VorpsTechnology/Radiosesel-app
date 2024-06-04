@@ -39,6 +39,6 @@ export 'package:music_streaming_mobile/screens/player/player_buttons.dart';
 export 'package:music_streaming_mobile/notifiers/play_button_notifier.dart';
 export 'package:music_streaming_mobile/notifiers/radio_change_notifier.dart';
 export 'package:music_streaming_mobile/screens/misc/language_controller.dart';
-export 'package:music_streaming_mobile/helper/ad_helper.dart';
+export 'package:music_streaming_mobile/manager/ad_manager.dart';
 export 'package:music_streaming_mobile/helper/strings.dart';
 
