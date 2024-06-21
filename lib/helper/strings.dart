@@ -15,3 +15,5 @@ final randomCovers = [
 ];
 
 final sleepTimerCounts = {15: "15 Minutes", 30: "30 Minutes", 60: "1 Hour"};
+
+const String streamUrl = 'https://a8.asurahosting.com:8310/radio.mp3';

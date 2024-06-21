@@ -16,11 +16,21 @@ void main() async {
     "E4823FBAE26FF01B49728AAAD3D6D40A",
     "D1868151FB6A810A8BCDB11D2F23CA68"
   ];
-
   await setupServiceLocator();
+  // const firebaseConfig = FirebaseOptions(
+  //     apiKey: "AIzaSyCZBAH7uczL4Y50_8v2HnCKwu-bdNKQZJI",
+  //     authDomain: "radiosesel-c4617.firebaseapp.com",
+  //     projectId: "radiosesel-c4617",
+  //     storageBucket: "radiosesel-c4617.appspot.com",
+  //     messagingSenderId: "175051300068",
+  //     appId: "1:175051300068:web:135d19173141cdbbad60f1",
+  //     measurementId: "G-4L4J2K9BML");
+  // if (Firebase.apps.isEmpty) {
+  //   await Firebase.initializeApp(name: 'Radiosesel', options: firebaseConfig);
+  // }
 
   await Firebase.initializeApp(
-    name: "radiosesel-7d945",
+    name: "Radiosesel",
     options: const FirebaseOptions(
         apiKey: "AIzaSyCflv0PsP2sxDKyFtNZb0KCfLga9lOmGgU",
         authDomain: "radiosesel-7d945.firebaseapp.com",

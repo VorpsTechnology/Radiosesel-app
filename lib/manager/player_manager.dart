@@ -41,7 +41,7 @@ class PlayerManager {
       await _flutterRadioPlayer.init(
         AppConfig.projectName,
         radio.name,
-        "https://stream.radiosesel.com/stream#.mp3",
+        streamUrl,
         "true",
       );
     } on PlatformException {
