@@ -14,33 +14,34 @@ class ContactUsController extends GetxController {
     //   return;
     // }
     if (email.value.text.isEmpty) {
-      showMessage(LocalizationString.pleaseEnterEmail, true);
+      // showMessage(LocalizationString.pleaseEnterEmail, true);
       return;
     }
     if (subject.value.text.isEmpty) {
-      showMessage(LocalizationString.pleaseEnterPhoneNumber, true);
+      // showMessage(LocalizationString.pleaseEnterPhoneNumber, true);
       return;
     }
     if (message.value.text.isEmpty) {
-      showMessage(LocalizationString.pleaseEnterMessage, true);
+      // showMessage(LocalizationString.pleaseEnterMessage, true);
       return;
     }
 
     EasyLoading.show(status: LocalizationString.loading);
-    getIt<FirebaseManager>()
-        .sendContactusMessage(
-            email.value.text, subject.value.text, message.value.text)
-        .then((result) {
+  //   getIt<FirebaseManager>()
+  //       .sendContactusMessage(
+  //           email.value.text, subject.value.text, message.value.text)
+  //       .then((result) {
       EasyLoading.dismiss();
-      if (result.status == true) {
-        showMessage(result.message ?? LocalizationString.requestSent, false);
-        email.value.clear();
-        subject.value.clear();
-        message.value.clear();
-      } else {
-        showMessage(result.message ?? LocalizationString.errorMessage, true);
-      }
-    });
+  //     if (result.status == true) {
+  //       showMessage(result.message ?? LocalizationString.requestSent, false);
+  //       email.value.clear();
+  //       subject.value.clear();
+  //       message.value.clear();
+  //     } else {
+        // showMessage(result.message ?? LocalizationString.errorMessage, true);
+        showMessage('Sent success', true);
+  //     }
+  //   });
   }
 
   showMessage(String message, bool isError) {

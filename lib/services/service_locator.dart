@@ -5,9 +5,9 @@ GetIt getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
   // services
-  getIt.registerLazySingleton<FirebaseManager>(() => FirebaseManager());
+  // getIt.registerLazySingleton<FirebaseManager>(() => FirebaseManager());
   // page state
   getIt.registerLazySingleton<PlayerManager>(() => PlayerManager());
-  getIt.registerLazySingleton<UserProfileManager>(() => UserProfileManager());
+  // getIt.registerLazySingleton<UserProfileManager>(() => UserProfileManager());
 
 }

@@ -29,22 +29,22 @@ void main() async {
   //   await Firebase.initializeApp(name: 'Radiosesel', options: firebaseConfig);
   // }
 
-  await Firebase.initializeApp(
-    name: "Radiosesel",
-    options: const FirebaseOptions(
-        apiKey: "AIzaSyCflv0PsP2sxDKyFtNZb0KCfLga9lOmGgU",
-        authDomain: "radiosesel-7d945.firebaseapp.com",
-        projectId: "radiosesel-7d945",
-        storageBucket: "radiosesel-7d945.appspot.com",
-        messagingSenderId: "1072836679751",
-        appId: "1:1072836679751:android:25318a04cf3c7ea0d1b962",
-        measurementId: "G-7G7PHVPZ0M"),
-  );
+  // await Firebase.initializeApp(
+  //   name: "Radiosesel",
+  //   options: const FirebaseOptions(
+  //       apiKey: "AIzaSyCflv0PsP2sxDKyFtNZb0KCfLga9lOmGgU",
+  //       authDomain: "radiosesel-7d945.firebaseapp.com",
+  //       projectId: "radiosesel-7d945",
+  //       storageBucket: "radiosesel-7d945.appspot.com",
+  //       messagingSenderId: "1072836679751",
+  //       appId: "1:1072836679751:android:25318a04cf3c7ea0d1b962",
+  //       measurementId: "G-7G7PHVPZ0M"),
+  // );
   await MobileAds.instance.initialize();
   RequestConfiguration requestConfiguration =
       RequestConfiguration(testDeviceIds: devices);
   MobileAds.instance.updateRequestConfiguration(requestConfiguration);
-  await getIt<UserProfileManager>().refreshProfile();
+  // await getIt<UserProfileManager>().refreshProfile();
 
   bool isDarkTheme = await SharedPrefs().isDarkMode();
 

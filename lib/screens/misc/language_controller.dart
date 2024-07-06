@@ -26,32 +26,32 @@ class LanguageController extends GetxController {
       showMessage(LocalizationString.pleaseSelectAtLeastOneLanguage, true);
       return;
     }
-    getIt<FirebaseManager>()
-        .updateUserLanguagePref(selectedLanguages)
-        .then((response) {
-      if (response.status == true) {
-        getIt<UserProfileManager>().refreshProfile();
-        Get.back();
-      } else {
-        showMessage(LocalizationString.errorMessage, true);
-      }
-    });
+    // getIt<FirebaseManager>()
+    //     .updateUserLanguagePref(selectedLanguages)
+    //     .then((response) {
+    //   if (response.status == true) {
+    //     getIt<UserProfileManager>().refreshProfile();
+    //     Get.back();
+    //   } else {
+    //     showMessage(LocalizationString.errorMessage, true);
+    //   }
+    // });
   }
 
   getLanguages() {
-    getIt<FirebaseManager>().getAllLanguages().then((result) {
-      languages.value = result;
+    // getIt<FirebaseManager>().getAllLanguages().then((result) {
+    //   languages.value = result;
 
-      for (LanguageModel language in languages) {
-        if (getIt<UserProfileManager>()
-            .user!
-            .prefLanguages
-            .contains(language.name)) {
-          selectedLanguages.add(language);
-        }
-      }
-      update();
-    });
+    //   for (LanguageModel language in languages) {
+    //     if (getIt<UserProfileManager>()
+    //         .user!
+    //         .prefLanguages
+    //         .contains(language.name)) {
+    //       selectedLanguages.add(language);
+    //     }
+    //   }
+    //   update();
+    // });
   }
 
   showMessage(String message, bool isError) {

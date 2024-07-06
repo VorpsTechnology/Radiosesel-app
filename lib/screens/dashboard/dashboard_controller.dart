@@ -9,28 +9,28 @@ class DashboardController extends GetxController {
   loadData() {
     getAllHomeSliders();
     isLoading.value = true;
-    getIt<FirebaseManager>().getHomePageData().then((result) {
-      isLoading.value = false;
-      sections.value = result;
-      update();
-    });
+    // getIt<FirebaseManager>().getHomePageData().then((result) {
+    //   isLoading.value = false;
+    //   sections.value = result;
+    //   update();
+    // });
   }
 
   sliderTapped(HomeSliderModel slider) {
-    getIt<FirebaseManager>()
-        .getMultipleRadiosByIds(radiosId: [slider.itemId]).then((result) {
-      if (result.isNotEmpty) {
-        Get.to(() => RadioDetail(
-              radio: result.first,
-            ));
-      }
-    });
+    // getIt<FirebaseManager>()
+    //     .getMultipleRadiosByIds(radiosId: [slider.itemId]).then((result) {
+    //   if (result.isNotEmpty) {
+    //     Get.to(() => RadioDetail(
+    //           radio: result.first,
+    //         ));
+    //   }
+    // });
   }
 
   getAllHomeSliders() {
-    getIt<FirebaseManager>().getAllHomeSliders().then((result) {
-      homeSliders.value = result;
-      update();
-    });
+    // getIt<FirebaseManager>().getAllHomeSliders().then((result) {
+    //   homeSliders.value = result;
+    //   update();
+    // });
   }
 }

@@ -12,21 +12,21 @@ class RadioDetailController extends GetxController {
   }
 
   checkIfAlreadyLiked() {
-    getIt<FirebaseManager>()
-        .checkIfAlreadyLikedRadio(radio.value!.id)
-        .then((value) {
-      isFav.value = value;
-      update();
-    });
+    // getIt<FirebaseManager>()
+    //     .checkIfAlreadyLikedRadio(radio.value!.id)
+    //     .then((value) {
+    //   isFav.value = value;
+    //   update();
+    // });
   }
 
   getSimilarRadios() {
-    getIt<FirebaseManager>()
-        .getAllRadios(genreId: radio.value!.genreId)
-        .then((result) {
-      similarRadios.value = result;
-      update();
-    });
+    // getIt<FirebaseManager>()
+    //     .getAllRadios(genreId: radio.value!.genreId)
+    //     .then((result) {
+    //   similarRadios.value = result;
+    //   update();
+    // });
   }
 
   favBtnTapped() {

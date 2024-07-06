@@ -60,7 +60,7 @@ class PlayerManager {
 
     if (lastListenSongId != radio.id) {
       // increase song stream count
-      getIt<FirebaseManager>().increaseRadioListener(radio);
+      // getIt<FirebaseManager>().increaseRadioListener(radio);
       lastListenSongId = radio.id;
     }
   }
